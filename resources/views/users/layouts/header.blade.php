@@ -367,7 +367,7 @@
                         <div class="divider">
                             <span>or</span>
                         </div>
-                        <a href="#" class="google-login-btn">
+                        <a href="{{ route('user.login.google') }}" class="google-login-btn">
                             <div class="icon">
                                 <img src="{{ asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
                             </div>
@@ -378,19 +378,13 @@
                         </div>
                         <a href="#" class="google-login-btn">
                             <div class="icon">
-                                <img src="{{ asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
+                                <img src="{{ asset('assets/img/home1/icon/apple-icon.svg')}}" alt=""  width="30">
                             </div>
                             Continue with Apple
                         </a>
                         <div class="divider">
                             <!--<span>or</span>-->
                         </div>
-                        <a href="#" class="google-login-btn">
-                            <div class="icon">
-                                <img src="{{ asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
-                            </div>
-                            Continue with Facebook
-                        </a>
                     </form>
                 </div>
             </div>
