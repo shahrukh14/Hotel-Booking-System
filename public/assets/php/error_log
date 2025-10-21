@@ -1,0 +1,35 @@
+[15-Dec-2024 05:58:53 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/signin.php:11
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/signin.php(11): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/signin.php on line 11
+[15-Dec-2024 06:12:32 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for urbanSanctuaryDataBase failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 06:12:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for urbanSanctuaryDataBase failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php:9
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php(9): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:11:24 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:11:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php:9
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php(9): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:12:30 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:12:30 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php:9
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php(9): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:27:33 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:27:33 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php:9
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php(9): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:29:23 UTC] PHP Warning:  mysqli::__construct(): php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
+[15-Dec-2024 07:29:23 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: php_network_getaddresses: getaddrinfo for localhost345 failed: Name or service not known in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php:9
+Stack trace:
+#0 /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php(9): mysqli->__construct()
+#1 {main}
+  thrown in /home/nqxx7yqxq8fe/public_html/urbansanctuarystaycations/assets/php/saveContactUsForm.php on line 9
