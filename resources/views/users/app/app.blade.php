@@ -1,5 +1,8 @@
 <!--HEADER INCLUDE-->
-@include('users.layouts.header')
+@include('users.app.header')
+
+<!--SIDEBAR INCLUDE-->
+@include('users.app.sidebar')
 
 <!--MAIN CONTENT -->
 @yield('content')
@@ -8,4 +11,4 @@
 @include('toster')
 
 <!--FOOTER INCLUDE-->
-@include('users.layouts.footer')
+@include('users.app.footer')

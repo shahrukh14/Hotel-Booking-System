@@ -3,15 +3,6 @@
     <div class="container">
         <div class="footer-top">
             <div class="row g-lg-4 gy-5 justify-content-center">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer-widget">
-                        <div class="footer-logo">
-                            <a href="{{ route('index') }}"><img loading="lazy" src="{{ asset('assets/img/urbanSanctuaryLogo.svg')}}" alt=""></a>
-                        </div>
-                        <h3>Want <span>to Take <br></span> Tour Packages<span>?</span></h3>
-                        <a href="package-grid.html" class="primary-btn1">Book A Tour</a>
-                    </div>
-                </div>
                 <div class="col-lg-2 col-md-6 col-sm-6 d-flex justify-content-lg-center justify-content-sm-start">
                     <div class="footer-widget">
                         <div class="widget-title">
@@ -158,6 +149,7 @@
 <script src="{{ asset('assets/js/custom.js')}}"></script>
 <script src="{{ asset('assets/js/contactUsForm.js')}}"></script>
 @stack('script')
+
 <script>
     $(".marquee_text").marquee({
         direction: "left",

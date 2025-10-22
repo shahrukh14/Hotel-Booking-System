@@ -25,15 +25,13 @@ class LoginController extends Controller
             // Fallback for environments where session/state may not persist
             $googleUser = Socialite::driver('google')->stateless()->user();
         } catch (Exception $e) {
-            return $e->getMessage();
-            return redirect()->route('index')->with('error', 'Google login failed: '.$e->getMessage());
+            return redirect()->route('index')->with('Error', 'Google login failed: '.$e->getMessage());
         }
 
         // Safety: Google should return an email; if not, handle it
         $email = $googleUser->getEmail();
         if (empty($email)) {
-            return "Your Google account has no public email.";
-            return redirect()->route('index')->with('error', 'Your Google account has no public email.');
+            return redirect()->route('index')->with('Error', 'Your Google account has no public email.');
         }
 
         // Find existing user by google_id OR by email
@@ -60,6 +58,12 @@ class LoginController extends Controller
         Auth::login($user, remember: true);
 
         // Redirect after login
-        return redirect()->route('index');
+        return redirect()->route('user.dashboard')->with('success', 'Logged In Successfully');
+    }
+
+    public function logout(){
+        session()->flush();
+        Auth::guard('web')->logout();
+        return redirect()->route('index')->with('success', 'Logged out Successfully');
     }
 }

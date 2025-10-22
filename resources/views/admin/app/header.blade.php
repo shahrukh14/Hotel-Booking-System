@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -11,72 +12,59 @@
         var f = d.getElementsByTagName(s)[0],
             j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
-        j.src ='https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-NPT94482');</script>
     <!-- End Google Tag Manager -->
 
-    <script src="{{asset('assets/js/schemaMarkupSEO.js')}}" defer></script>
-
-    <!-- Title -->
-    <title>Zulu's Retreat - @yield('title') </title>
-    {{-- <link rel="icon" href="{{asset('assets/img/home3/icon/tabLogo.png')}} " type="image/gif" sizes="20x20"> --}}
-    <link rel="icon" href="{{asset('assets/img/Zulu.jpg')}}" type="image/gif" sizes="20x20">
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Find luxury short-term rentals at Zulus Retreat. Your perfect Airbnb alternative for a cozy and stylish stay near you. Book now!">
-
-    <meta property="og:title" content="Zulu Retreat - Luxury Short-Term Rentals | Airbnb Alternative">
-    <meta property="og:description" content="Experience premium short-term vacation rentals at Zulu Retreat. The perfect alternative to Airbnb, designed for comfort and style.">
-    <meta property="og:image" content="https://urbansanctuarystaycations.com/assets/img/zulu-retreat.jpg">
-    <meta property="og:url" content="https://urbansanctuarystaycations.com/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Zulu Retreat - Short-Term Rentals & Airbnb Alternative">
-    <meta name="twitter:description" content="Discover top-rated short-term vacation rentals with Zulu Retreat. A luxurious Airbnb alternative.">
-    <meta name="twitter:image" content="https://urbansanctuarystaycations.com/assets/img/zulu-retreat.jpg">
 
     <!-- Bootstrap CSS -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/jquery-ui.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/jquery-ui.css')}}" rel="stylesheet">
 
     <!-- Bootstrap Icon CSS -->
-    <link href="{{asset('assets/css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap-icons.css')}}" rel="stylesheet">
 
     <!-- Fontawesome all CSS -->
-    <link href="{{asset('assets/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/all.min.css')}}" rel="stylesheet">
 
     <!-- Animate CSS -->
-    <link href="{{asset('assets/css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/animate.min.css')}}" rel="stylesheet">
 
     <!-- FancyBox CSS -->
-    <link href="{{asset('assets/css/jquery.fancybox.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/jquery.fancybox.min.css')}}" rel="stylesheet">
 
     <!-- Fontawesome CSS -->
-    <link href="{{asset('assets/css/fontawesome.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/fontawesome.min.css')}}" rel="stylesheet">
 
     <!-- Swiper slider CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/daterangepicker.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/daterangepicker.css')}}">
 
     <!-- Slick slider CSS -->
-    <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css')}}">
 
     <!-- BoxIcon  CSS -->
-    <link href="{{asset('assets/css/boxicons.min.css')}}" rel="stylesheet">
-
+    <link href="{{ asset('assets/css/boxicons.min.css')}}" rel="stylesheet">
+    
     <!-- Select2  CSS -->
-    <link href="{{asset('assets/css/select2.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/nice-select.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/select2.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/nice-select.css')}}" rel="stylesheet">
 
     <!--  Style CSS  -->
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    @stack('style')
-</head>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css')}}">
 
-<body>
+    <!-- Title -->
+    <title>Zulu's Retreat - @yield('title') </title>
+    <link rel="icon" href="{{ asset('assets/img/sm-logo.svg')}}" type="image/gif')}}" sizes="20x20">
+</head>
+<body class="tt-magic-cursor style-2">
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPT94482" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -87,9 +75,7 @@
 <div class="right-sidebar-menu">
     <div class="sidebar-logo-area d-flex justify-content-between align-items-center">
         <div class="sidebar-logo-wrap">
-            <a href="{{ route('book.your.stay') }}">
-                <img loading="lazy" alt="image" src="{{asset('assets/img/zuluLogoWhiteBG.jpg')}}">
-            </a>
+            <a href="index.html"><img alt="image" src="{{asset('assets/img/logo.svg')}}"></a>
         </div>
         <div class="right-sidebar-close-btn">
             <i class="bi bi-x"></i>
@@ -168,7 +154,7 @@
                                 <path d="M22.2963 20.4362L12.0546 23.9994C11.9279 24.0424 11.8177 24.1238 11.7393 24.2323C11.6609 24.3407 11.6183 24.4709 11.6172 24.6047V28.4727C11.6082 29.344 12.9203 29.344 12.909 28.4727V25.0626L22.5056 21.7239L32.109 25.0626V28.4727C32.0704 29.3679 33.4354 29.3679 33.3945 28.4727V24.6047C33.3945 24.333 33.2226 24.0874 32.9622 23.9994L22.7217 20.4362C22.5442 20.3743 22.4699 20.3766 22.2963 20.4362Z"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0218 1.4574C24.4643 0.642178 27.9039 2.74009 28.7282 6.14394C29.5491 9.5478 27.4375 12.9545 23.9945 13.7669C20.5498 14.5793 17.1102 12.4842 16.2882 9.08034C15.4645 5.67648 17.5771 2.27092 21.0218 1.4574ZM20.7206 0.208186C16.6053 1.17999 14.049 5.29014 15.0362 9.37647C16.0221 13.4628 20.1794 15.989 24.2958 15.0172C28.4122 14.0454 30.9651 9.9347 29.978 5.84838C28.9908 1.76261 24.8336 -0.764182 20.7206 0.208186Z"/>
                                 <path d="M16.0203 18.1635H28.9941C30.7193 18.1635 31.834 18.4653 32.7491 19.1324C33.6653 19.8002 34.4312 20.9024 35.2697 22.6339L39.1818 30.7123C39.7247 31.8328 39.849 32.686 39.6714 33.2857C39.4938 33.8887 39.019 34.3828 37.9638 34.7896L33.8338 36.3945C33.1547 36.66 32.6459 36.5902 32.2204 36.3622C31.7983 36.1347 31.4613 35.712 31.2843 35.2066C30.9297 34.1939 31.1516 32.985 32.5364 32.391C33.7663 31.8623 35.9079 30.9937 35.9079 30.9937C36.7889 30.7129 36.2534 29.3922 35.4257 29.803C35.4257 29.803 33.2869 30.6715 32.0286 31.2121C30.0663 32.0546 29.5257 34.0844 30.0697 35.6326C30.1406 35.8391 30.2348 36.0377 30.3414 36.2266C28.6985 39.3672 25.9505 41.7011 22.5052 43.5806C19.0605 41.7011 16.3147 39.3672 14.669 36.2266C14.7784 36.0377 14.8698 35.8391 14.9435 35.6326C15.4876 34.0844 14.9469 32.0546 12.9812 31.2121C11.7258 30.6715 9.58643 29.803 9.58643 29.803C8.75646 29.3922 8.22149 30.7129 9.10536 30.9937C9.10536 30.9937 11.2441 31.8629 12.4757 32.391C13.8588 32.985 14.0835 34.1939 13.7289 35.2066C13.5514 35.712 13.2115 36.1347 12.7895 36.3622C12.3674 36.5902 11.8557 36.66 11.176 36.3945L7.04886 34.7902C5.99423 34.3828 5.51769 33.8887 5.34012 33.2862C5.16085 32.686 5.2868 31.8328 5.82744 30.7129L9.74528 22.6344C10.5821 20.903 11.3474 19.8007 12.263 19.133C13.1803 18.4653 14.294 18.1635 16.0203 18.1635ZM16.0203 16.8813C14.1408 16.8813 12.6873 17.2268 11.5051 18.0903C10.3228 18.9526 9.46276 20.2614 8.5857 22.0728L4.6741 30.1513C4.05574 31.4272 3.79307 32.6004 4.10339 33.6527C4.41711 34.7045 5.30552 35.4959 6.58537 35.9929L10.7125 37.5972C11.694 37.9784 12.6516 37.8985 13.3982 37.4962C13.5258 37.4282 13.6467 37.3459 13.7618 37.2597C15.6322 40.5688 18.6015 43.019 22.204 44.9246C22.2968 44.974 22.4003 44.9999 22.5055 44.9999C22.6107 44.9999 22.7142 44.974 22.807 44.9246C26.4094 43.019 29.381 40.5688 31.2491 37.2597C31.3666 37.3459 31.4851 37.4287 31.6151 37.4962C32.3599 37.8979 33.3204 37.9784 34.3007 37.5972L38.4313 35.9929C39.7111 35.4959 40.5973 34.7039 40.9076 33.6527C41.2179 32.6009 40.9609 31.4272 40.3403 30.1513L36.4281 22.0728C35.5505 20.2619 34.6887 18.9526 33.5065 18.0903C32.3276 17.2274 30.8736 16.8813 28.9947 16.8813H16.0203Z"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd"  d="M27.9156 29.9296L21.2582 36.646C21.214 36.6902 21.1606 36.6902 21.1164 36.646L17.101 32.63L18.3474 31.3536L20.7374 33.7499C20.8588 33.8694 21.0223 33.9363 21.1927 33.9363C21.363 33.9363 21.5266 33.8694 21.648 33.7499L26.5875 28.8069L27.9156 29.9296ZM26.6391 27.451C26.2796 27.4858 25.9426 27.6421 25.6838 27.8941L21.1964 32.3821L19.2607 30.4493C18.732 29.9143 17.8368 29.9143 17.3075 30.4493L16.1882 31.5867C15.9324 31.8464 15.7891 32.1963 15.7891 32.5608C15.7891 32.9253 15.9324 33.2752 16.1882 33.5349L20.2127 37.5588C20.8265 38.1732 21.551 38.1794 22.1631 37.5645L28.829 30.8367C29.3787 30.2813 29.2658 29.3651 28.8222 28.8954L27.721 27.805C27.4067 27.4981 26.9937 27.4125 26.6391 27.451Z"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M27.9156 29.9296L21.2582 36.646C21.214 36.6902 21.1606 36.6902 21.1164 36.646L17.101 32.63L18.3474 31.3536L20.7374 33.7499C20.8588 33.8694 21.0223 33.9363 21.1927 33.9363C21.363 33.9363 21.5266 33.8694 21.648 33.7499L26.5875 28.8069L27.9156 29.9296ZM26.6391 27.451C26.2796 27.4858 25.9426 27.6421 25.6838 27.8941L21.1964 32.3821L19.2607 30.4493C18.732 29.9143 17.8368 29.9143 17.3075 30.4493L16.1882 31.5867C15.9324 31.8464 15.7891 32.1963 15.7891 32.5608C15.7891 32.9253 15.9324 33.2752 16.1882 33.5349L20.2127 37.5588C20.8265 38.1732 21.551 38.1794 22.1631 37.5645L28.829 30.8367C29.3787 30.2813 29.2658 29.3651 28.8222 28.8954L27.721 27.805C27.4067 27.4981 26.9937 27.4125 26.6391 27.451Z"/>
                             </svg>
                         </div>
                         <h6>Private Tour</h6>
@@ -185,7 +171,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img1.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img1.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>5 Tour</span>
@@ -199,7 +185,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img2.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img2.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>8 Tour</span>
@@ -213,7 +199,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img3.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img3.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>4 Tour</span>
@@ -227,7 +213,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img4.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img4.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>6 Tour</span>
@@ -241,7 +227,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img1.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img1.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>5 Tour</span>
@@ -255,7 +241,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img2.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img2.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>8 Tour</span>
@@ -269,7 +255,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img3.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img3.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>4 Tour</span>
@@ -283,7 +269,7 @@
                             <div class="swiper-slide">
                                 <div class="destination-card2">
                                     <a href="destination-details.html" class="destination-card-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/home2/destination-card-sidebar-img4.png')}}" alt="">
+                                        <img src="{{asset('assets/img/home2/destination-card-sidebar-img4.png')}}" alt="">
                                     </a>
                                     <div class="batch">
                                         <span>6 Tour</span>
@@ -348,7 +334,7 @@
         <div class="modal-content">
             <div class="modal-close-btn" data-bs-dismiss="modal"></div>
             <div class="modal-header">
-                <img src="{{ asset('assets/img/burseyWeb/73_Signin.jpg')}}" alt="">
+                <img src="{{asset('assets/img/burseyWeb/73_Signin.jpg')}}" alt="">
             </div>
             <div class="modal-body">
                 <div class="login-registration-form">
@@ -364,9 +350,9 @@
                         <div class="divider">
                             <span>or</span>
                         </div>
-                        <a href="{{ route('user.login.google') }}" class="google-login-btn">
+                        <a href="#" class="google-login-btn">
                             <div class="icon">
-                                <img src="{{ asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
+                                <img src="{{asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
                             </div>
                             Continue with Google
                         </a>
@@ -375,13 +361,19 @@
                         </div>
                         <a href="#" class="google-login-btn">
                             <div class="icon">
-                                <img src="{{ asset('assets/img/home1/icon/apple-icon.svg')}}" alt=""  width="30">
+                                <img src="{{asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
                             </div>
                             Continue with Apple
                         </a>
                         <div class="divider">
                             <!--<span>or</span>-->
                         </div>
+                        <a href="#" class="google-login-btn">
+                            <div class="icon">
+                                <img src="{{asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
+                            </div>
+                            Continue with Facebook
+                        </a>
                     </form>
                 </div>
             </div>
@@ -390,42 +382,165 @@
 </div>
 
 <!-- Start header section -->
-<header class="header-area style-1">
-    <div class="header-logo d-lg-none d-flex">
-        <a href="{{ route('index') }}"><img loading="lazy" alt="Zulus Retreat Logo" class="img-fluid" src="{{ asset('assets/img/urbanSanctuaryLogo.svg')}}"></a>
-    </div>
-    <div class="company-logo d-lg-flex d-none">
-        <a href="{{ route('index') }}"><img loading="lazy" src="{{ asset('assets/img/urbanSanctuaryLogo.svg')}}" alt="Zulus Retreat Logo"></a>
+<header class="header-area style-1 dashboard">
+    <div class="header-log-and-sb-btn">
+        <div class="header-logo">
+            <a href="index.html"><img alt="image" class="img-fluid" src="{{asset('assets/img/logo.svg')}}"></a>
+        </div>
+        <div class="dashboard-sb-btn">
+            <svg class="sidebar-toggle-button" width="25" height="25" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.29608 0.0658336C0.609639 0.31147 0.139209 0.899069 0.0432028 1.63598C-0.0144009 2.09353 -0.0144009 5.4939 0.0432028 5.95146C0.129608 6.59686 0.489632 7.11703 1.07047 7.42046L1.36329 7.57458H3.83545H6.30761L6.59563 7.42046C6.96525 7.2278 7.25807 6.93401 7.45008 6.56314L7.60369 6.27416V3.79372V1.31328L7.45008 1.02429C7.25807 0.653433 6.96525 0.359633 6.59563 0.166978L6.30761 0.0128531L3.90745 0.00322056C1.83372 -0.00641251 1.4785 0.00322056 1.29608 0.0658336ZM6.2356 0.802741C6.52842 0.956866 6.65803 1.08209 6.79244 1.34699L6.90765 1.57336V3.80817V6.03816L6.74924 6.29824C6.53322 6.66429 6.2068 6.85694 5.74117 6.90029C5.54916 6.91956 4.55549 6.92437 3.52343 6.91474L1.65131 6.90029L1.41129 6.77025C1.12807 6.62094 1.00807 6.49571 0.854455 6.20191L0.739248 5.98518V3.79372V1.60226L0.854455 1.38552C1.05607 0.995397 1.33929 0.778659 1.74731 0.706413C1.85292 0.687148 2.85618 0.677515 3.97946 0.677515L6.01959 0.687148L6.2356 0.802741Z"></path>
+                <path d="M11.6647 0.0658336C10.9783 0.31147 10.5079 0.899069 10.4119 1.63598C10.3879 1.82863 10.3687 2.80154 10.3687 3.79372C10.3687 4.7859 10.3879 5.75881 10.4119 5.95146C10.4983 6.59686 10.8583 7.11703 11.4391 7.42046L11.7319 7.57458H14.2041H16.6763L16.9643 7.42046C17.3339 7.2278 17.6267 6.93401 17.8187 6.56314L17.9723 6.27416V3.79372V1.31328L17.8187 1.02429C17.6267 0.653433 17.3339 0.359633 16.9643 0.166978L16.6763 0.0128531L14.2761 0.00322056C12.2024 -0.00641251 11.8471 0.00322056 11.6647 0.0658336ZM16.6043 0.802741C16.9019 0.956866 17.0267 1.08209 17.1611 1.35181L17.2811 1.583L17.2763 3.79854C17.2763 5.73472 17.2667 6.03816 17.1995 6.1682C17.0555 6.45237 16.9067 6.61131 16.6475 6.7558L16.3882 6.90029H14.2041H12.02L11.7799 6.77025C11.4967 6.62094 11.3767 6.49571 11.2231 6.20191L11.1079 5.98518V3.79372V1.60226L11.2231 1.38552C11.4247 0.995397 11.7079 0.778659 12.116 0.706413C12.2216 0.687148 13.2248 0.677515 14.3481 0.677515L16.3882 0.687148L16.6043 0.802741Z"></path>
+                <path d="M1.29608 10.4693C0.609639 10.7149 0.139209 11.3025 0.0432028 12.0394C-0.0144009 12.497 -0.0144009 15.8973 0.0432028 16.3549C0.129608 17.0003 0.489632 17.5205 1.07047 17.8239L1.36329 17.978H3.83545H6.30761L6.59563 17.8239C6.96525 17.6312 7.25807 17.3374 7.45008 16.9666L7.60369 16.6776V14.1972V11.7167L7.45008 11.4277C7.25807 11.0569 6.96525 10.7631 6.59563 10.5704L6.30761 10.4163L3.90745 10.4067C1.83372 10.397 1.4785 10.4067 1.29608 10.4693ZM6.2356 11.2062C6.52842 11.3603 6.65803 11.4855 6.79244 11.7504L6.90765 11.9768V14.2116V16.4416L6.74924 16.7017C6.53322 17.0677 6.2068 17.2604 5.74117 17.3037C5.54916 17.323 4.55549 17.3278 3.52343 17.3182L1.65131 17.3037L1.41129 17.1737C1.12807 17.0244 1.00807 16.8992 0.854455 16.6054L0.739248 16.3886V14.1972V12.0057L0.854455 11.789C1.05607 11.3988 1.33929 11.1821 1.74731 11.1099C1.85292 11.0906 2.85618 11.081 3.97946 11.081L6.01959 11.0906L6.2356 11.2062Z"></path>
+                <path d="M13.2441 10.4934C11.8856 10.8498 10.8583 11.8853 10.5079 13.2531C10.3735 13.7781 10.3735 14.6162 10.5079 15.1412C10.8343 16.4127 11.732 17.3808 12.9945 17.8239C13.3593 17.9491 13.4937 17.9732 14.0601 17.9925C14.617 18.0117 14.7754 17.9973 15.1162 17.9106C16.5179 17.5542 17.5452 16.5283 17.9052 15.1219C18.0348 14.6162 18.03 13.7685 17.9004 13.2531C17.55 11.8757 16.5179 10.8401 15.145 10.4885C14.6314 10.3585 13.7529 10.3585 13.2441 10.4934ZM15.2314 11.2784C15.7066 11.4518 16.0475 11.6782 16.4363 12.0828C17.0075 12.6848 17.2763 13.3639 17.2763 14.2068C17.2763 15.0882 17.0075 15.7288 16.3691 16.3645C15.721 17.0099 15.0826 17.2796 14.2186 17.2845C13.7001 17.2845 13.3113 17.193 12.8121 16.957C12.5336 16.8221 12.3608 16.692 12.0392 16.3694C11.396 15.724 11.132 15.0882 11.132 14.1972C11.132 13.3495 11.396 12.6896 11.972 12.0828C12.3608 11.6782 12.7017 11.4518 13.1817 11.2736C13.7913 11.0521 14.6218 11.0521 15.2314 11.2784Z"></path>
+            </svg>
+        </div>
     </div>
     <div class="main-menu">
         <div class="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
             <div class="mobile-logo-wrap">
-                <a href="{{ route('index') }}"><img loading="lazy" alt="Zulus Retreat Logo" src="{{ asset('assets/img/urbanSanctuaryLogo.svg')}}"></a>
+                <a href="index.html"><img alt="image" src="{{asset('assets/img/logo.svg')}}"></a>
             </div>
             <div class="menu-close-btn">
                 <i class="bi bi-x"></i>
             </div>
         </div>
         <ul class="menu-list">
-            <li class="@if (request()->is('/')) active @endif">
-                <a href="{{route('index')}}" class="drop-down">Home</a>
+            <li class="menu-item-has-children">
+                <a href="index.html" class="drop-down">Home</a><i class="bi bi-plus dropdown-icon"></i>
+                <ul class="sub-menu">
+                    <li><a href="index.html">Home 01</a></li>
+                    <li><a href="index2.html">Home 02</a></li>
+                    <li><a href="index3.html">Home 03</a></li>
+                    <li><a href="index4.html">Home 04</a></li>
+                    <li><a href="index5.html">Home 05</a></li>
+                    <li><a href="index6.html">Home 06</a></li>
+                </ul>
             </li>
-            
-            <li class="@if (request()->is('book-your-stay')) active @endif">
-                <a href="{{route('book.your.stay')}}" class="drop-down">Book Your Stay</a>
+            <li>
+                <a href="about.html" class="drop-down">About</a>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="package-grid.html" class="drop-down">Tours</a><i class="bi bi-plus dropdown-icon"></i>
+                <ul class="sub-menu">
+                    <li><a href="package-grid.html">Package Grid</a></li>
+                    <li>
+                        <a href="package-sidebar.html">Package Sidebar</a>
+                    </li>
+                    <li>
+                        <a href="package-top-search.html">Package Top Search</a>
+                    </li>
+                    <li>
+                        <a href="package-category.html">Package Category</a>
+                    </li>
+                    <li>
+                        <a href="package-details.html">Package Details</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="destination1.html" class="drop-down">Destination</a><i class="bi bi-plus dropdown-icon"></i>
+                <ul class="sub-menu">
+                    <li><a href="destination1.html">Destination Style 01</a></li>
+                    <li><a href="destination2.html">Destination Style 02</a></li>
+                    <li><a href="destination3.html">Destination Style 03</a></li>
+                    <li><a href="destination4.html">Destination Style 04</a></li>
+                    <li><a href="destination5.html">Destination Style 05</a></li>
+                    <li><a href="destination-details.html">Destination Details</a></li>
+                </ul>
+            </li>
+            <li class="menu-item-has-children active">
+                <a href="#" class="drop-down">Pages</a><i class="bi bi-plus dropdown-icon"></i>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="hotel-suits.html">Hotel</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="hotel-suits.html">Hotel</a></li>
+                            <li><a href="hotel-details.html">Hotel Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="activities.html">Activities</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="activities.html">Activities</a></li>
+                            <li><a href="activities-details.html">Activities Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="transport.html">Transport</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="transport.html">Transport</a></li>
+                            <li><a href="transport-details.html">Transport Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="visa.html">Visa</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="visa.html">Visa</a></li>
+                            <li><a href="visa-details.html">Visa Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blog-grid.html">Blog</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="blog-grid.html">Blog Grid</a></li>
+                            <li><a href="blog-standard.html">Blog Standard</a></li>
+                            <li><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
+                            <li><a href="blog-standard-sidebar.html">Blog Standard Sidebar</a></li>
+                            <li><a href="blog-details.html">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="guide1.html">Tour Guide</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="guide1.html">Tour Guide Style 01</a></li>
+                            <li><a href="guide2.html">Tour Guide Style 02</a></li>
+                            <li><a href="guide3.html">Tour Guide Style 03</a></li>
+                            <li><a href="guide4.html">Tour Guide Style 04</a></li>
+                            <li><a href="guide5.html">Tour Guide Style 05</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="shop.html">Shop</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="product-details.html">Product Details</a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">CheckOut</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                        <ul class="sub-menu">
+                            <li><a href="dashboard.html">Admin Dashboard</a></li>
+                            <li><a href="customer-dashboard.html">Customer Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="faq.html">Faqs</a></li>
+                    <li><a href="error.html">Error</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="contact.html" class="drop-down">Contact</a>
             </li>
 
-            <li class="@if (request()->is('faqs')) active @endif">
-                <a href="{{route('faqs')}}" class="drop-down">Faqs</a>
-            </li>
-
-            <li class="@if (request()->is('gallery')) active @endif">
-                <a href="{{route('gallery')}}" class="drop-down">Gallery</a>
-            </li>
-
-            <li class="@if (request()->is('contact')) active @endif">
-                <a href="{{route('contact')}}" class="drop-down">Contact</a>
-            </li>
         </ul>
         <div class="topbar-right d-lg-none d-block">
             <button type="button" class="modal-btn header-cart-btn" data-bs-toggle="modal" data-bs-target="#user-login">
@@ -454,16 +569,23 @@
     <div class="nav-right d-flex jsutify-content-end align-items-center">
         <ul class="icon-list">
             <li class="d-lg-flex d-none">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#user-login">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
-                        <path d="M26 13.5C26 20.4036 20.4035 26 13.5 26C6.59632 26 1 20.4036 1 13.5C1 6.59632 6.59632 1 13.5 1C20.4035 1 26 6.59632 26 13.5Z"
-                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M18.5001 11.8333C18.5001 14.5947 16.2616 16.8333 13.5001 16.8333C10.7384 16.8333 8.5 14.5947 8.5 11.8333C8.5 9.07189 10.7384 6.8333 13.5001 6.8333C16.2616 6.8333 18.5001 9.07189 18.5001 11.8333Z"
-                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6.04297 23.5324C6.44287 19.7667 9.62917 16.8333 13.5008 16.8333C17.3725 16.8333 20.5588 19.7669 20.9585 23.5325"
-                                stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27" fill="none">
+                    <path d="M26 13.5C26 20.4036 20.4035 26 13.5 26C6.59632 26 1 20.4036 1 13.5C1 6.59632 6.59632 1 13.5 1C20.4035 1 26 6.59632 26 13.5Z"
+                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.5001 11.8333C18.5001 14.5947 16.2616 16.8333 13.5001 16.8333C10.7384 16.8333 8.5 14.5947 8.5 11.8333C8.5 9.07189 10.7384 6.8333 13.5001 6.8333C16.2616 6.8333 18.5001 9.07189 18.5001 11.8333Z"
+                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.04297 23.5324C6.44287 19.7667 9.62917 16.8333 13.5008 16.8333C17.3725 16.8333 20.5588 19.7669 20.9585 23.5325"
+                        stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="mx-1">{{auth()->guard('admin')->user()->name}}</span>
+            </li>
+            <li class="right-sidebar-button d-none">
+                <svg class="sidebar-toggle-button" width="25" height="25" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.29608 0.0658336C0.609639 0.31147 0.139209 0.899069 0.0432028 1.63598C-0.0144009 2.09353 -0.0144009 5.4939 0.0432028 5.95146C0.129608 6.59686 0.489632 7.11703 1.07047 7.42046L1.36329 7.57458H3.83545H6.30761L6.59563 7.42046C6.96525 7.2278 7.25807 6.93401 7.45008 6.56314L7.60369 6.27416V3.79372V1.31328L7.45008 1.02429C7.25807 0.653433 6.96525 0.359633 6.59563 0.166978L6.30761 0.0128531L3.90745 0.00322056C1.83372 -0.00641251 1.4785 0.00322056 1.29608 0.0658336ZM6.2356 0.802741C6.52842 0.956866 6.65803 1.08209 6.79244 1.34699L6.90765 1.57336V3.80817V6.03816L6.74924 6.29824C6.53322 6.66429 6.2068 6.85694 5.74117 6.90029C5.54916 6.91956 4.55549 6.92437 3.52343 6.91474L1.65131 6.90029L1.41129 6.77025C1.12807 6.62094 1.00807 6.49571 0.854455 6.20191L0.739248 5.98518V3.79372V1.60226L0.854455 1.38552C1.05607 0.995397 1.33929 0.778659 1.74731 0.706413C1.85292 0.687148 2.85618 0.677515 3.97946 0.677515L6.01959 0.687148L6.2356 0.802741Z"></path>
+                    <path d="M11.6647 0.0658336C10.9783 0.31147 10.5079 0.899069 10.4119 1.63598C10.3879 1.82863 10.3687 2.80154 10.3687 3.79372C10.3687 4.7859 10.3879 5.75881 10.4119 5.95146C10.4983 6.59686 10.8583 7.11703 11.4391 7.42046L11.7319 7.57458H14.2041H16.6763L16.9643 7.42046C17.3339 7.2278 17.6267 6.93401 17.8187 6.56314L17.9723 6.27416V3.79372V1.31328L17.8187 1.02429C17.6267 0.653433 17.3339 0.359633 16.9643 0.166978L16.6763 0.0128531L14.2761 0.00322056C12.2024 -0.00641251 11.8471 0.00322056 11.6647 0.0658336ZM16.6043 0.802741C16.9019 0.956866 17.0267 1.08209 17.1611 1.35181L17.2811 1.583L17.2763 3.79854C17.2763 5.73472 17.2667 6.03816 17.1995 6.1682C17.0555 6.45237 16.9067 6.61131 16.6475 6.7558L16.3882 6.90029H14.2041H12.02L11.7799 6.77025C11.4967 6.62094 11.3767 6.49571 11.2231 6.20191L11.1079 5.98518V3.79372V1.60226L11.2231 1.38552C11.4247 0.995397 11.7079 0.778659 12.116 0.706413C12.2216 0.687148 13.2248 0.677515 14.3481 0.677515L16.3882 0.687148L16.6043 0.802741Z"></path>
+                    <path d="M1.29608 10.4693C0.609639 10.7149 0.139209 11.3025 0.0432028 12.0394C-0.0144009 12.497 -0.0144009 15.8973 0.0432028 16.3549C0.129608 17.0003 0.489632 17.5205 1.07047 17.8239L1.36329 17.978H3.83545H6.30761L6.59563 17.8239C6.96525 17.6312 7.25807 17.3374 7.45008 16.9666L7.60369 16.6776V14.1972V11.7167L7.45008 11.4277C7.25807 11.0569 6.96525 10.7631 6.59563 10.5704L6.30761 10.4163L3.90745 10.4067C1.83372 10.397 1.4785 10.4067 1.29608 10.4693ZM6.2356 11.2062C6.52842 11.3603 6.65803 11.4855 6.79244 11.7504L6.90765 11.9768V14.2116V16.4416L6.74924 16.7017C6.53322 17.0677 6.2068 17.2604 5.74117 17.3037C5.54916 17.323 4.55549 17.3278 3.52343 17.3182L1.65131 17.3037L1.41129 17.1737C1.12807 17.0244 1.00807 16.8992 0.854455 16.6054L0.739248 16.3886V14.1972V12.0057L0.854455 11.789C1.05607 11.3988 1.33929 11.1821 1.74731 11.1099C1.85292 11.0906 2.85618 11.081 3.97946 11.081L6.01959 11.0906L6.2356 11.2062Z"></path>
+                    <path d="M13.2441 10.4934C11.8856 10.8498 10.8583 11.8853 10.5079 13.2531C10.3735 13.7781 10.3735 14.6162 10.5079 15.1412C10.8343 16.4127 11.732 17.3808 12.9945 17.8239C13.3593 17.9491 13.4937 17.9732 14.0601 17.9925C14.617 18.0117 14.7754 17.9973 15.1162 17.9106C16.5179 17.5542 17.5452 16.5283 17.9052 15.1219C18.0348 14.6162 18.03 13.7685 17.9004 13.2531C17.55 11.8757 16.5179 10.8401 15.145 10.4885C14.6314 10.3585 13.7529 10.3585 13.2441 10.4934ZM15.2314 11.2784C15.7066 11.4518 16.0475 11.6782 16.4363 12.0828C17.0075 12.6848 17.2763 13.3639 17.2763 14.2068C17.2763 15.0882 17.0075 15.7288 16.3691 16.3645C15.721 17.0099 15.0826 17.2796 14.2186 17.2845C13.7001 17.2845 13.3113 17.193 12.8121 16.957C12.5336 16.8221 12.3608 16.692 12.0392 16.3694C11.396 15.724 11.132 15.0882 11.132 14.1972C11.132 13.3495 11.396 12.6896 11.972 12.0828C12.3608 11.6782 12.7017 11.4518 13.1817 11.2736C13.7913 11.0521 14.6218 11.0521 15.2314 11.2784Z"></path>
+                </svg>
             </li>
         </ul>
         <div class="hotline-area d-xl-flex d-none">
@@ -476,7 +598,7 @@
             </div>
             <div class="content">
                 <span>To More Inquiry</span>
-                <h6><a href="tel:+14245239000">+1 (424) 523-9000</a></h6>
+                <h6><a href="tel:+990737621432">+990-737 621 432</a></h6>
             </div>
         </div>
         <div class="sidebar-button mobile-menu-btn">
@@ -487,3 +609,6 @@
     </div>
 </header>
 <!-- End header section -->
+
+<!-- Dashboard wrapper section -->
+<div class="dashboard-wrapper">
