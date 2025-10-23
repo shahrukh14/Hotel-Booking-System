@@ -41,4 +41,9 @@ return [
         'redirect'      => env('GOOGLE_REDIRECT_URI'),
     ],
 
+    'firebase' => [
+        'credentials' => base_path(env('FIREBASE_CREDENTIALS')),
+    ],
+
+
 ];

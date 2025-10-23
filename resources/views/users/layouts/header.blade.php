@@ -36,7 +36,8 @@
     <meta name="twitter:title" content="Zulu Retreat - Short-Term Rentals & Airbnb Alternative">
     <meta name="twitter:description" content="Discover top-rated short-term vacation rentals with Zulu Retreat. A luxurious Airbnb alternative.">
     <meta name="twitter:image" content="https://urbansanctuarystaycations.com/assets/img/zulu-retreat.jpg">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <!-- Bootstrap CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/jquery-ui.css')}}" rel="stylesheet">
@@ -364,7 +365,7 @@
                         <div class="divider">
                             <span>or</span>
                         </div>
-                        <a href="{{ route('user.login.google') }}" class="google-login-btn">
+                        <a href="#" id="googleLoginLink" class="google-login-btn">
                             <div class="icon">
                                 <img src="{{ asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
                             </div>

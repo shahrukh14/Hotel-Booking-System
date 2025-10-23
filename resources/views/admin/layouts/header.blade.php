@@ -27,7 +27,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Find luxury short-term rentals at Zulus Retreat. Your perfect Airbnb alternative for a cozy and stylish stay near you. Book now!">
-
     <meta property="og:title" content="Zulu Retreat - Luxury Short-Term Rentals | Airbnb Alternative">
     <meta property="og:description" content="Experience premium short-term vacation rentals at Zulu Retreat. The perfect alternative to Airbnb, designed for comfort and style.">
     <meta property="og:image" content="https://urbansanctuarystaycations.com/assets/img/zulu-retreat.jpg">
@@ -36,6 +35,7 @@
     <meta name="twitter:title" content="Zulu Retreat - Short-Term Rentals & Airbnb Alternative">
     <meta name="twitter:description" content="Discover top-rated short-term vacation rentals with Zulu Retreat. A luxurious Airbnb alternative.">
     <meta name="twitter:image" content="https://urbansanctuarystaycations.com/assets/img/zulu-retreat.jpg">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">

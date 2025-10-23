@@ -47,6 +47,51 @@
 <script src="{{asset('assets/js/jquery.fancybox.min.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{asset('assets/js/custom.js')}}"></script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script>
+    // Firebase web config
+    const firebaseConfig = {
+        apiKey: "AIzaSyBRV-zkZj_af0xQG2nnlbDfso4uaw7a4G8",
+        authDomain: "zulu-s-retreat.firebaseapp.com",
+        projectId: "zulu-s-retreat",
+        storageBucket: "zulu-s-retreat.firebasestorage.app",
+        messagingSenderId: "737897520989",
+        appId: "1:737897520989:web:8a58d4b57f5314f53fd2b4",
+        measurementId: "G-JM6JHCFYWW"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    $('#logoutBtn').on('click', function(e) {
+        e.preventDefault();
+
+        // Sign out from Firebase (clears client state)
+        firebase.auth().signOut().finally(function() {
+            $.ajax({
+                url: "{{ route('user.login.firebase.logout') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                }
+            })
+            .done(function(res) {
+                if (res.redirect) {
+                    window.location.href = res.redirect;
+                } else {
+                    console.log('Logged out successfully');
+                }
+            })
+            .fail(function(xhr) {
+                console.error('Logout failed', xhr.responseText);
+                alert("Logout failed: " + (xhr.responseJSON?.message || "Unexpected error"));
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\User\Auth\FirebaseController;
 
 
 Route::get('login', function(){
@@ -36,8 +37,14 @@ Route::prefix('user')->name('user.')->group(function () {
 
     //Login Routes
     Route::prefix('login')->name('login.')->group(function () {
+
+        //Google Login
         Route::get('/google', [LoginController::class, 'google'])->name('google');
         Route::get('/google/callback', [LoginController::class, 'googleCallback'])->name('google.callback');
+
+        //firebase login 
+        Route::post('/auth/firebase-login', [FirebaseController::class, 'login'])->name('firebase');
+        Route::post('/auth/firebase-logout', [FirebaseController::class, 'logout'])->name('firebase.logout');
     });
 
     // Authenticated Routes

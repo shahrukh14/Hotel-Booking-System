@@ -158,6 +158,76 @@
 <script src="{{ asset('assets/js/custom.js')}}"></script>
 <script src="{{ asset('assets/js/contactUsForm.js')}}"></script>
 @stack('script')
+
+<!-- Firebase JS (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+    //Firebase web config
+    const firebaseConfig = {
+        apiKey: "AIzaSyBRV-zkZj_af0xQG2nnlbDfso4uaw7a4G8",
+        authDomain: "zulu-s-retreat.firebaseapp.com",
+        projectId: "zulu-s-retreat",
+        storageBucket: "zulu-s-retreat.firebasestorage.app",
+        messagingSenderId: "737897520989",
+        appId: "1:737897520989:web:8a58d4b57f5314f53fd2b4",
+        measurementId: "G-JM6JHCFYWW"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //Google Auth provider
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    // Setup CSRF for jQuery AJAX
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $(document).ready(function () {
+        $('#googleLoginLink').on('click', function (e) {
+            e.preventDefault();
+
+            // optional: request scopes / profile info
+            // provider.addScope('profile');
+
+            firebase.auth().signInWithPopup(provider)
+            .then(function (result) {
+                return result.user.getIdToken();
+            })
+            .then(function (idToken) {
+            // send the token to Laravel for verification and session creation
+                return $.ajax({
+                    url: "{{ route('user.login.firebase') }}",
+                    method: "POST",
+                    data: { idToken: idToken }
+                });
+            })
+            .then(function (response) {
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                } else {
+                    location.reload();
+                }
+            })
+            .catch(function (error) {
+                // handle both Ajax + Firebase errors
+                console.error('Login failed:', error);
+                var errMsg = error.responseJSON && error.responseJSON.message
+                    ? error.responseJSON.message
+                    : (error.message || 'Unexpected error');
+                alert('Login failed: ' + errMsg);
+
+                firebase.auth().signOut();
+            });
+        });
+    });
+</script>
+
 <script>
     $(".marquee_text").marquee({
         direction: "left",
