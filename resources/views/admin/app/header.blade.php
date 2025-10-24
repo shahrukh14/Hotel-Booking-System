@@ -407,141 +407,23 @@
             </div>
         </div>
         <ul class="menu-list">
-            <li class="menu-item-has-children">
-                <a href="index.html" class="drop-down">Home</a><i class="bi bi-plus dropdown-icon"></i>
-                <ul class="sub-menu">
-                    <li><a href="index.html">Home 01</a></li>
-                    <li><a href="index2.html">Home 02</a></li>
-                    <li><a href="index3.html">Home 03</a></li>
-                    <li><a href="index4.html">Home 04</a></li>
-                    <li><a href="index5.html">Home 05</a></li>
-                    <li><a href="index6.html">Home 06</a></li>
-                </ul>
+            <li>
+                <a href="{{route('index')}}" class="drop-down">Home</a>
             </li>
             <li>
-                <a href="about.html" class="drop-down">About</a>
-            </li>
-            <li class="menu-item-has-children">
-                <a href="package-grid.html" class="drop-down">Tours</a><i class="bi bi-plus dropdown-icon"></i>
-                <ul class="sub-menu">
-                    <li><a href="package-grid.html">Package Grid</a></li>
-                    <li>
-                        <a href="package-sidebar.html">Package Sidebar</a>
-                    </li>
-                    <li>
-                        <a href="package-top-search.html">Package Top Search</a>
-                    </li>
-                    <li>
-                        <a href="package-category.html">Package Category</a>
-                    </li>
-                    <li>
-                        <a href="package-details.html">Package Details</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item-has-children">
-                <a href="destination1.html" class="drop-down">Destination</a><i class="bi bi-plus dropdown-icon"></i>
-                <ul class="sub-menu">
-                    <li><a href="destination1.html">Destination Style 01</a></li>
-                    <li><a href="destination2.html">Destination Style 02</a></li>
-                    <li><a href="destination3.html">Destination Style 03</a></li>
-                    <li><a href="destination4.html">Destination Style 04</a></li>
-                    <li><a href="destination5.html">Destination Style 05</a></li>
-                    <li><a href="destination-details.html">Destination Details</a></li>
-                </ul>
-            </li>
-            <li class="menu-item-has-children active">
-                <a href="#" class="drop-down">Pages</a><i class="bi bi-plus dropdown-icon"></i>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="hotel-suits.html">Hotel</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="hotel-suits.html">Hotel</a></li>
-                            <li><a href="hotel-details.html">Hotel Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="activities.html">Activities</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="activities.html">Activities</a></li>
-                            <li><a href="activities-details.html">Activities Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="transport.html">Transport</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="transport.html">Transport</a></li>
-                            <li><a href="transport-details.html">Transport Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="visa.html">Visa</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="visa.html">Visa</a></li>
-                            <li><a href="visa-details.html">Visa Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blog-grid.html">Blog</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="blog-grid.html">Blog Grid</a></li>
-                            <li><a href="blog-standard.html">Blog Standard</a></li>
-                            <li><a href="blog-grid-sidebar.html">Blog Grid Sidebar</a></li>
-                            <li><a href="blog-standard-sidebar.html">Blog Standard Sidebar</a></li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="guide1.html">Tour Guide</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="guide1.html">Tour Guide Style 01</a></li>
-                            <li><a href="guide2.html">Tour Guide Style 02</a></li>
-                            <li><a href="guide3.html">Tour Guide Style 03</a></li>
-                            <li><a href="guide4.html">Tour Guide Style 04</a></li>
-                            <li><a href="guide5.html">Tour Guide Style 05</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="shop.html">Shop</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="shop.html">Shop</a></li>
-                            <li><a href="product-details.html">Product Details</a></li>
-                            <li><a href="cart.html">Cart</a></li>
-                            <li><a href="checkout.html">CheckOut</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="dashboard.html">Dashboard</a>
-                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
-                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
-                        <ul class="sub-menu">
-                            <li><a href="dashboard.html">Admin Dashboard</a></li>
-                            <li><a href="customer-dashboard.html">Customer Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="faq.html">Faqs</a></li>
-                    <li><a href="error.html">Error</a></li>
-                </ul>
+                <a href="{{route('book.your.stay')}}" class="drop-down">Book Your Stay</a>
             </li>
             <li>
-                <a href="contact.html" class="drop-down">Contact</a>
+                <a href="{{route('faqs')}}" class="drop-down">Faqs</a>
             </li>
 
+            <li>
+                <a href="{{route('gallery')}}" class="drop-down">Gallery</a>
+            </li>
+
+            <li>
+                <a href="{{route('contact')}}" class="drop-down">Contact</a>
+            </li>
         </ul>
         <div class="topbar-right d-lg-none d-block">
             <button type="button" class="modal-btn header-cart-btn" data-bs-toggle="modal" data-bs-target="#user-login">

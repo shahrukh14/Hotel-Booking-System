@@ -153,10 +153,11 @@
 
 <script src="{{ asset('assets/js/jquery.fancybox.min.js')}}"></script>
 
-
 <!-- Custom JS -->
 <script src="{{ asset('assets/js/custom.js')}}"></script>
 <script src="{{ asset('assets/js/contactUsForm.js')}}"></script>
+<script src="{{ asset('assets/js/range-slider.js')}}"></script>
+
 @stack('script')
 
 <!-- Firebase JS (compat) -->
@@ -223,6 +224,52 @@
                 alert('Login failed: ' + errMsg);
 
                 firebase.auth().signOut();
+            });
+        });
+
+        //Login via Email
+        $('#emailVerifyBtn').on('click', function (e) {
+            e.preventDefault();
+            let email = $('#emailField').val();
+            if(email == ''){
+                alert('Enter a email id');
+                return false;
+            }
+
+            let url = "/user/email/verify";
+            let csrf = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    _token: csrf,
+                    email: email,
+                },
+                success: function(response) {
+                    if(response.status == "success"){
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "positionClass": "toast-top-right",
+                        };
+                        toastr.success(response.message);
+                        $('.successMessage').removeClass('d-none');
+                        $('#emailVerifyBtn').addClass('d-none');
+                    }else{
+                        toastr.options = {
+                            "closeButton": true,
+                            "progressBar": true,
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "positionClass": "toast-top-right",
+                        };
+                        toastr.error(response.message);
+                        $('.successMessage').addClass('d-none');
+                        $('#emailVerifyBtn').removeClass('d-none');
+                    }
+                }
             });
         });
     });

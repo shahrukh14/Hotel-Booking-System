@@ -21,6 +21,9 @@ Route::get('/book-your-stay', [SiteController::class, 'bookYourStay'])->name('bo
 Route::get('/faqs', [SiteController::class, 'faqs'])->name('faqs');
 Route::get('/gallery', [SiteController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
+Route::post('/properties/filter', [SiteController::class, 'filter'])->name('properties.filter');
+Route::get('/check/vailability/{id}', [SiteController::class, 'checkAailability'])->name('check.vailability');
+
 
 //Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -44,12 +47,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Bookings list
         Route::get('/bookings', [AdminController::class, 'showBookings'])->name('pages.bookings');
         Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+        
+        // properties list
+        Route::get('/properties', [AdminController::class, 'showProperties'])->name('properties');
+        Route::get('/add', [AdminController::class, 'add'])->name('add.properties');
+        Route::post('/store', [AdminController::class, 'store'])->name('store.properties');
+        Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit.properties');
+        Route::post('/update/{id}', [AdminController::class, 'update'])->name('update.properties');
+
+        //Review list
+        Route::get('/reviews', [AdminController::class, 'reviewList'])->name('review.list');
+        Route::post('/reviews/status', [AdminController::class, 'toggleStatusAjax'])->name('review.status');
+
     });
 });
 
 //User Routes
 Route::prefix('user')->name('user.')->group(function () {
 
+    Route::post('/email/verify', [LoginController::class, 'emailVerify'])->name('email.verify');
+    Route::get('/email/login/{id}', [LoginController::class, 'emailLogin'])->name('email.login');
     //Login Routes
     Route::prefix('login')->name('login.')->group(function () {
         //Google Login
@@ -74,6 +91,8 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/checkout/session/{booking}', [PaymentController::class, 'createCheckoutSession'])->name('checkout.session');
         Route::get('/payment/success/', [PaymentController::class, 'success'])->name('payment.success');
         Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+        Route::post('/review/store/{id}', [BookingController::class, 'reviewStore'])->name('review.store');
     });
 
     // Inquiry Form Submission

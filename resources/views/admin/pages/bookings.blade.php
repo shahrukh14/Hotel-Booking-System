@@ -52,43 +52,48 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5">No Bookings Found</td>
+                                    <td colspan="5" >No Bookings Found</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
-                    {{-- <div class="pagination-area">
+                    <div class="pagination-area">
                         <ul class="paginations">
-                            <li class="page-item active">
-                                <a href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#">3</a>
-                            </li>
+                            @for ($i = 1; $i <= $bookings->lastPage(); $i++)
+                                <li class="page-item {{ $bookings->currentPage() == $i ? 'active' : '' }}">
+                                    <a href="{{ $bookings->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
                         </ul>
                         <ul class="paginations-buttons">
                             <li>
-                                <a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
-                                        <path d="M0 7.00008L7 0L2.54545 7.00008L7 14L0 7.00008Z"/>
-                                    </svg>
-                                    Prev
-                                </a>
+                                @if ($bookings->onFirstPage())
+                                    <span>
+                                        <svg ...></svg>
+                                        Prev
+                                    </span>
+                                @else
+                                    <a href="{{ $bookings->previousPageUrl() }}">
+                                        <svg ...></svg>
+                                        Prev
+                                    </a>
+                                @endif
                             </li>
                             <li>
-                                <a href="#">
-                                    Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14" fill="none">
-                                        <path d="M7 7.00008L0 0L4.45455 7.00008L0 14L7 7.00008Z"/>
-                                    </svg>
-                                </a>
+                                @if ($bookings->hasMorePages())
+                                    <a href="{{ $bookings->nextPageUrl() }}">
+                                        Next
+                                        <svg ...></svg>
+                                    </a>
+                                @else
+                                    <span>
+                                        Next
+                                        <svg ...></svg>
+                                    </span>
+                                @endif
                             </li>
                         </ul>
-                    </div> --}}
-                    {{ $bookings->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>

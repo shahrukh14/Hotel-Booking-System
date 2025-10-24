@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Booking;
+use App\Models\Review;
 use Carbon\Carbon;
 use Exception;
 
@@ -72,6 +73,40 @@ class BookingController extends Controller
             $booking->save();
             return redirect()->route('user.checkout.session', $booking->id);
         } catch (\Exception $ex) {
+            return redirect()->back()->with($ex->getMessage());
+        }
+    }
+
+    public function reviewStore(Request $request, $id){
+        try {
+            //final rating calculation
+            $final_rating = ((int)$request->cleanliness_review + (int)$request->location_review + (int)$request->service_review + (int)$request->facilities_review + (int)$request->value_for_money_review) / 5;
+
+            $review                         = new Review();
+            $review->user_id                = auth()->user()->id;
+            $review->property_id            = $id;
+            $review->name                   = $request->name;
+            $review->email                  = $request->email;
+            $review->cleanliness_rating     = $request->cleanliness_review;
+            $review->location_rating        = $request->location_review;
+            $review->service_rating         = $request->service_review;
+            $review->facilities_rating      = $request->facilities_review;
+            $review->value_for_money_rating = $request->value_for_money_review;
+            $review->final_rating           = $final_rating;
+            $review->review                 = $request->review;
+            $review->status                 = 0;
+            $review->save();
+
+            //Property's over all review update
+            $hotelOverallRating = Review::where('property_id', $id)->avg('final_rating');
+
+            $property           = Property::find($id);
+            $property->ratings  = $hotelOverallRating;
+            $property->save(); 
+
+            return redirect()->back()->with('success', 'Review submitted successfully');
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
             return redirect()->back()->with($ex->getMessage());
         }
     }

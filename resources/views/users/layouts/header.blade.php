@@ -359,9 +359,10 @@
                     </div>
                     <form>
                         <div class="form-inner mb-20">
-                            <input type="text" placeholder="Email *">
+                            <input type="text" placeholder="Email *" id="emailField">
                         </div>
-                        <a href="#" class="login-btn mb-25">Continue</a>
+                        <p class="d-none successMessage" style="color: rgb(24, 151, 24);">A link has been sent to you email. Please click on that link for login.</p>
+                        <a href="#" class="login-btn mb-25" id="emailVerifyBtn">Continue</a>
                         <div class="divider">
                             <span>or</span>
                         </div>

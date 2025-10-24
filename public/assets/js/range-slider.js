@@ -14,11 +14,11 @@ $(document).ready(function() {
       prefix: '$'
     });
     noUiSlider.create(rangeSlider, {
-      start: [10, 700],
+      start: [200, 3000],
       step: 1,
       range: {
-        'min': [1],
-        'max': [1500]
+        'min': [100],
+        'max': [3000]
       },
       format: moneyFormat,
       connect: true
@@ -28,9 +28,9 @@ $(document).ready(function() {
     rangeSlider.noUiSlider.on('update', function(values, handle) {
       document.getElementById('slider-range-value1').innerHTML = values[0];
       document.getElementById('slider-range-value2').innerHTML = values[1];
-      document.getElementsByName('min-value').value = moneyFormat.from(
+      document.getElementById('min-value').value = moneyFormat.from(
         values[0]);
-      document.getElementsByName('max-value').value = moneyFormat.from(
+      document.getElementById('max-value').value = moneyFormat.from(
         values[1]);
     });
   });

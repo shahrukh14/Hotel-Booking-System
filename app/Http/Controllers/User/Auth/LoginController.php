@@ -6,6 +6,8 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Mail\UserEmailLoginMail;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -59,6 +61,46 @@ class LoginController extends Controller
 
         // Redirect after login
         return redirect()->route('user.dashboard')->with('success', 'Logged In Successfully');
+    }
+
+    public function emailVerify(Request $request){
+        try {
+            $user = User::where('email', $request->email)->first();
+            if($user){
+                $mailData = [
+                    'title' => 'Click the link below to login to your account.',
+                    'link' =>  route('user.email.login', base64_encode($user->id))
+                ];
+
+                Mail ::to($user->email)->send(new UserEmailLoginMail($mailData));
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "Email verified",
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => " This email is not registered in our site",
+                ]);
+            }
+        } catch (\Throwable $ex) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $ex->getMessage(),
+            ]);;
+        }
+    }
+
+    public function emailLogin($id){
+        $id = base64_decode($id);
+        $user = User::find($id);
+        if($user){
+            Auth::login($user, remember: true);
+            return redirect()->route('user.dashboard')->with('success', 'Logged In Successfully');
+        }else{
+            return redirect()->route('index')->with('error', 'Invalid Link');
+        }
+
     }
 
     public function logout(){

@@ -96,7 +96,7 @@
                 <div class="location-and-review">
                     <div class="location">
                         <p>
-                            <i class="bi bi-geo-alt"></i> 7012 Bursey Rd, Fort Worth, TX 76182 - 
+                            <i class="bi bi-geo-alt"></i> {{$property->address}} - 
                             <a href="https://www.google.com/maps/place/7012+Bursey+Rd,+Fort+Worth,+TX+76182/@32.891936,-97.2316663,17z/data=!3m1!4b1!4m6!3m5!1s0x864dd7c818ed2e41:0xc599bdbe5529276b!8m2!3d32.891936!4d-97.2316663!16s%2Fg%2F11c4vv6mhq?entry=ttu&g_ep=EgoyMDI0MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">See Map</a>
                         </p>
                     </div>
@@ -111,13 +111,11 @@
                         <span><strong>8.1 Excellent</strong> 94 reviews</span>
                     </div>
                 </div>
-                <h2>Zulu's Retreat</h2>
+                <h2>{{$property->name}}</h2>
                 <div class="price-area">
                     <h6>Dallas, TX</h6>
                 </div>
-                <p>Welcome to Zulu’s Retreat at Urban Sanctuary! This stunning 4-bedroom, 3-bath villa, set on nearly an acre in DFW, offers luxury and excitement. Enjoy a private multi-sport court,
-                    putting green, sand bunker, and driving net. Accommodating up to 12 guests, it features spacious king-bed rooms, a game room with karaoke and arcade games, a sparkling pool, patio
-                    dining, and a fire pit. With a 220v outlet for EVs, Zulu’s Retreat combines relaxation and adventure for an unforgettable experience!</p>
+                <p>{{$property->description}}</p>
                 <h4>Highlights</h4>
                 <ul class="room-features">
                     <li>
@@ -305,7 +303,11 @@
                 </ul>
 
                 <h4>Pets.</h4>
-                <p>Pets not allowed</p>
+                @if($property->pets)
+                    <p>Pets are allowed</p>
+                @else
+                    <p>Pets not allowed</p>
+                @endif
 
                 <h4>Facilities</h4>
                 <ul class="extra-service mb-20">
@@ -402,38 +404,44 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"><i class="bi bi-x-lg"></i></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
                                         <div class="row g-2">
                                             <div class="col-lg-8">
                                                 <div class="review-from-wrapper">
                                                     <h4>Write Your Review</h4>
-                                                    <form>
+                                                    <form action="{{route('user.review.store', $property->id)}}" method="POST" id="reviewForm">
+                                                        @csrf
                                                         <div class="row">
                                                             <div class="col-md-6 mb-20">
                                                                 <div class="form-inner">
                                                                     <label>Name</label>
-                                                                    <input type="text" placeholder="Enter Your Name:">
+                                                                    <input type="text" name="name" placeholder="Enter Your Name:">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 mb-20">
                                                                 <div class="form-inner">
                                                                     <label>Email</label>
-                                                                    <input type="email" placeholder="Enter Your Email:">
+                                                                    <input type="email" name="email" placeholder="Enter Your Email:">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12 mb-20">
                                                                 <div class="form-inner">
                                                                     <label>Review*</label>
-                                                                    <textarea name="message"  placeholder="Enter Your Review..."></textarea>
+                                                                    <textarea name="review" placeholder="Enter Your Review..."></textarea>
                                                                 </div>
                                                             </div>
+
+                                                            <input type="hidden" id="cleanliness_review" name="cleanliness_review" value="0">
+                                                            <input type="hidden" id="location_review" name="location_review" value="0">
+                                                            <input type="hidden" id="service_review" name="service_review" value="0">
+                                                            <input type="hidden" id="facilities_review" name="facilities_review" value="0">
+                                                            <input type="hidden" id="value_for_money_review" name="value_for_money_review" value="0">
+
                                                             <div class="col-lg-12 mb-40">
                                                                 <div class="star-rating-wrapper">
                                                                     <ul class="star-rating-list">
                                                                         <li>
-                                                                            <div class="rating-container"
-                                                                                 data-rating="0">
+                                                                            <div class="rating-container" id="cleanliness_star" data-rating="0">
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
@@ -443,8 +451,7 @@
                                                                             <span>Cleanliness</span>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="rating-container"
-                                                                                 data-rating="0">
+                                                                            <div class="rating-container" id="location_star" data-rating="0">
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
@@ -454,8 +461,7 @@
                                                                             <span>Location</span>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="rating-container"
-                                                                                 data-rating="0">
+                                                                            <div class="rating-container" id="service_star" data-rating="0">
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
@@ -465,8 +471,7 @@
                                                                             <span>Service</span>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="rating-container"
-                                                                                 data-rating="0">
+                                                                            <div class="rating-container" id="facilities_star" data-rating="0">
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
@@ -476,8 +481,7 @@
                                                                             <span>Facilities</span>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="rating-container"
-                                                                                 data-rating="0">
+                                                                            <div class="rating-container" id="value_for_money_star" data-rating="0">
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
                                                                                 <i class="bi bi-star-fill star-icon"></i>
@@ -490,9 +494,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
-                                                                <button type="submit" class="primary-btn1">Submit
-                                                                    Now
-                                                                </button>
+                                                                <button type="button" class="primary-btn1" id="reviewSubmitBtn"> Submit Now </button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -500,8 +502,7 @@
                                             </div>
                                             <div class="col-lg-4 d-lg-flex d-none">
                                                 <div class="modal-form-image">
-                                                    <img loading="lazy" src="{{ asset('assets/img/innerpage/form-image.jpg')}}" alt="image"
-                                                         class="img-fluid">
+                                                    <img loading="lazy" src="{{asset('/'.$property->images[0])}}" alt="image" class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
@@ -509,20 +510,19 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="primary-btn1" data-bs-toggle="modal" href="#exampleModalToggle" role="button">GIVE A
-                            RATING</a>
+                        <a class="primary-btn1" data-bs-toggle="modal" href="#exampleModalToggle" role="button">GIVE A RATING</a>
                     </div>
                     <div class="review-area">
                         <ul class="comment">
+                            @foreach ($reviews as $review)
                             <li>
                                 <div class="single-comment-area">
                                     <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-01.jpg')}}" alt="">
+                                        <img loading="lazy" src="{{$review->user->image}}" alt="{{$review->user->name}}">
                                     </div>
                                     <div class="comment-content">
                                         <div class="author-name-deg">
-                                            <h6>Mignon</h6>
-                                            <!--<span>05 June, 2023</span>-->
+                                            <h6>{{$review->name}}</h6>
                                         </div>
                                         <ul class="review-item-list">
                                             <li>
@@ -576,328 +576,10 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                        <p>This was the perfect vacation spot for our family members to gather for spring break! The grandkids loved the game room and sleeping arrangements, as well as
-                                            the multi use court. The weather was too cool to swim, but the kids sure would have been in the pool if their parents had said yes. The parents and
-                                            grandparents loved the extra space for us all to sleep comfortably. And the kitchen was great for cooking meals for the family. It was a great home to
-                                            return to after we’d spend time away at other area attractions. The owners were very responsive and caring. I highly recommend this property and would stay
-                                            there again if needed.</p>
+                                        <p>{{$review->review}}</p>
                                         <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                </path>
-                                            </svg>
-                                            Reply
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="comment-replay">
-                                    <li>
-                                        <div class="single-comment-area">
-                                            <div class="author-img">
-                                                <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-02.jpg')}}" alt="">
-                                            </div>
-                                            <div class="comment-content">
-                                                <div class="author-name-deg">
-                                                    <h6>Author Response</h6>
-                                                    <!--<span>05 June, 2023</span>-->
-                                                </div>
-                                                <p>Thank you, Mignon, for your kind words about our house. It was a pleasure hosting your beautiful family, and we're glad everyone enjoyed! We look
-                                                    forward to welcoming you all back anytime!</p>
-                                                <div class="replay-btn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                         viewBox="0 0 14 11">
-                                                        <path
-                                                                d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                        </path>
-                                                    </svg>
-                                                    Reply
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="single-comment-area">
-                                    <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-04.jpg')}}" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-deg">
-                                            <h6>Cynthia</h6>
-                                            <!--<span>05 June, 2023</span>-->
-                                        </div>
-                                        <ul class="review-item-list">
-                                            <li>
-                                                <span>Cleanliness</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Location</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Service</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Facilities</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-half"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Value for money</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <p>This home, with all of its amenities, was AMAZING and an incredible find. It was an escape within the city, close enough to shopping areas, restaurants, and
-                                            bars to venture out, but secluded enough to withdraw when needed. I appreciated how quickly Ash responded to all of my questions as we searched for the
-                                            perfect place to host my out-of-town family. The kiddos appreciated the game room with the arcade games and karaoke machine and the adults lounged
-                                            comfortably around the fire pit. The house was only 3 miles from the train station where we were able to jump on and be in Grapevine in 15 minutes. This
-                                            place was so convenient and a relaxing getaway. We will definitely stay here again.</p>
-                                        <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                </path>
-                                            </svg>
-                                            Reply
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="comment-replay">
-                                    <li>
-                                        <div class="single-comment-area">
-                                            <div class="author-img">
-                                                <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-02.jpg')}}" alt="">
-                                            </div>
-                                            <div class="comment-content">
-                                                <div class="author-name-deg">
-                                                    <h6>Author Response</h6>
-                                                    <!--<span>05 June, 2023</span>-->
-                                                </div>
-                                                <p>Thank you so much for the kind words, Cynthia. It was a pleasure hosting you and your family, and I'm thrilled you all enjoyed the amenities and the
-                                                    convenience of our house. We look forward to welcoming you back on your next getaway!</p>
-                                                <div class="replay-btn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                         viewBox="0 0 14 11">
-                                                        <path
-                                                                d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                        </path>
-                                                    </svg>
-                                                    Reply
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="single-comment-area">
-                                    <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-05.jpg')}}" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-deg">
-                                            <h6>Lydia</h6>
-                                            <!--<span>05 June, 2023</span>-->
-                                        </div>
-                                        <ul class="review-item-list">
-                                            <li>
-                                                <span>Cleanliness</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Location</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Service</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Facilities</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Value for money</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <p>This was a great weekend. We brought a toddler, a teen, and 2 adults. The pool was not open since it was February but the hottub was in great working order
-                                            and we had a nice time. The kids played basketball and tennis with my husband. I used a brand new grill to make burgers. We watched the superbowl and had an
-                                            amazing weekend. They are very nice, responsive hosts and they definitely have put time and care into this home. Highly recommend for anyone wanting to get
-                                            away without having to leave the house. There is so much to do here. Ping ping, billiards, tvs galore, arcades, foosball, pool, hot tub, gym, sauna, and
-                                            more.</p>
-                                        <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                </path>
-                                            </svg>
-                                            Reply
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="comment-replay">
-                                    <li>
-                                        <div class="single-comment-area">
-                                            <div class="author-img">
-                                                <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-02.jpg')}}" alt="">
-                                            </div>
-                                            <div class="comment-content">
-                                                <div class="author-name-deg">
-                                                    <h6>Author Response</h6>
-                                                    <!--<span>05 June, 2023</span>-->
-                                                </div>
-                                                <p>Thank you, Lydia, for your thoughtful review! I'm delighted to hear that your group had such an enjoyable and activity-packed stay at our house. It
-                                                    was a pleasure hosting you, and we hope to welcome you back for another great experience in the future!</p>
-                                                <div class="replay-btn">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                         viewBox="0 0 14 11">
-                                                        <path
-                                                                d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                        </path>
-                                                    </svg>
-                                                    Reply
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="single-comment-area">
-                                    <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-05.jpg')}}" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-deg">
-                                            <h6>Matt</h6>
-                                            <!--<span>05 June, 2023</span>-->
-                                        </div>
-                                        <ul class="review-item-list">
-                                            <li>
-                                                <span>Cleanliness</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Location</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Service</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Facilities</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Value for money</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <p>Ash and Lee were great hosts! They were very responsive and courteous. The property was just as advertised, entertaining and in a great neighborhood. There
-                                            was enough space for our group of 12. Would definitely stay again!</p>
-                                        <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"viewBox="0 0 14 11">
+                                                <path d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
                                                 </path>
                                             </svg>
                                             Reply
@@ -905,156 +587,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="single-comment-area">
-                                    <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-05.jpg')}}" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-deg">
-                                            <h6>Laura</h6>
-                                            <!--<span>05 June, 2023</span>-->
-                                        </div>
-                                        <ul class="review-item-list">
-                                            <li>
-                                                <span>Cleanliness</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Location</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Service</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Facilities</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Value for money</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <p>We loved it!! So much fun!! My kids didn’t want to come off the court or out of the game room!!</p>
-                                        <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                </path>
-                                            </svg>
-                                            Reply
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="single-comment-area">
-                                    <div class="author-img">
-                                        <img loading="lazy" src="{{ asset('assets/img/innerpage/comment-author-05.jpg')}}" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-deg">
-                                            <h6>Melanie Guadalupe</h6>
-                                            <!--<span>05 June, 2023</span>-->
-                                        </div>
-                                        <ul class="review-item-list">
-                                            <li>
-                                                <span>Cleanliness</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Location</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Service</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Facilities</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <span>Value for money</span>
-                                                <ul class="star-list">
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                    <li><i class="bi bi-star-fill"></i></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                        <p>Recommend to anyone who wants a calm, fun place to stay with friends/family. We will stay here again ! 100% recommend</p>
-                                        <div class="replay-btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11"
-                                                 viewBox="0 0 14 11">
-                                                <path
-                                                        d="M8.55126 1.11188C8.52766 1.10118 8.50182 1.09676 8.47612 1.09903C8.45042 1.1013 8.42569 1.11018 8.40419 1.12486C8.3827 1.13954 8.36513 1.15954 8.35311 1.18304C8.34109 1.20653 8.335 1.23276 8.33539 1.25932V2.52797C8.33539 2.67388 8.2791 2.81381 8.17889 2.91698C8.07868 3.02016 7.94277 3.07812 7.80106 3.07812C7.08826 3.07812 5.64984 3.08362 4.27447 3.98257C3.2229 4.66916 2.14783 5.9191 1.50129 8.24735C2.59132 7.16575 3.83632 6.57929 4.92635 6.2679C5.59636 6.07737 6.28492 5.96444 6.97926 5.93121C7.26347 5.91835 7.54815 5.92129 7.83205 5.94001H7.84594L7.85129 5.94111L7.80106 6.48906L7.85449 5.94111C7.98638 5.95476 8.10864 6.01839 8.19751 6.11966C8.28638 6.22092 8.33553 6.35258 8.33539 6.48906V7.75771C8.33539 7.87654 8.45294 7.95136 8.55126 7.90515L12.8088 4.67796C12.8233 4.66692 12.8383 4.65664 12.8537 4.64715C12.8769 4.63278 12.8962 4.61245 12.9095 4.58816C12.9229 4.56386 12.9299 4.53643 12.9299 4.50851C12.9299 4.4806 12.9229 4.45316 12.9095 4.42887C12.8962 4.40458 12.8769 4.38425 12.8537 4.36988C12.8382 4.36039 12.8233 4.35011 12.8088 4.33907L8.55126 1.11188ZM7.26673 7.02381C7.19406 7.02381 7.11391 7.02711 7.02842 7.03041C6.56462 7.05242 5.92342 7.12504 5.21169 7.32859C3.79464 7.7335 2.11684 8.65116 1.00115 10.7175C0.940817 10.8291 0.844683 10.9155 0.729224 10.9621C0.613765 11.0087 0.486168 11.0124 0.368304 10.9728C0.250441 10.9331 0.149648 10.8525 0.0831985 10.7447C0.0167484 10.6369 -0.011219 10.5086 0.0040884 10.3819C0.499949 6.29981 2.01959 4.15202 3.70167 3.05391C5.03215 2.18467 6.40218 2.01743 7.26673 1.98552V1.25932C7.26663 1.03273 7.32593 0.810317 7.43839 0.615545C7.55084 0.420773 7.71227 0.260866 7.90565 0.152696C8.09902 0.0445258 8.31717 -0.00789584 8.53707 0.000962485C8.75698 0.00982081 8.97048 0.0796305 9.15506 0.203025L13.4233 3.43792C13.5998 3.55133 13.7453 3.7091 13.8462 3.8964C13.9471 4.08369 14 4.29434 14 4.50851C14 4.72269 13.9471 4.93333 13.8462 5.12063C13.7453 5.30792 13.5998 5.4657 13.4233 5.57911L9.15506 8.814C8.97048 8.9374 8.75698 9.00721 8.53707 9.01607C8.31717 9.02492 8.09902 8.9725 7.90565 8.86433C7.71227 8.75616 7.55084 8.59626 7.43839 8.40148C7.32593 8.20671 7.26663 7.9843 7.26673 7.75771V7.02381Z">
-                                                </path>
-                                            </svg>
-                                            Reply
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -1079,7 +613,7 @@
                                             <label class="form-check-label" for="custom">
                                             </label>
                                             <span class="form-group">
-                                                <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Custom Date Range" readonly>
+                                                <input type="text" id="dateRangePicker" name="daterange" placeholder="Select Custom Date Range" data-property="{{$property}}" readonly>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
                                                     <path d="M10.3125 7.03125C10.3125 6.90693 10.3619 6.7877 10.4498 6.69979C10.5377 6.61189 10.6569 6.5625 10.7812 6.5625H11.7188C11.8431 6.5625 11.9623 6.61189 12.0502 6.69979C12.1381 6.7877 12.1875 6.90693 12.1875 7.03125V7.96875C12.1875 8.09307 12.1381 8.2123 12.0502 8.30021C11.9623 8.38811 11.8431 8.4375 11.7188 8.4375H10.7812C10.6569 8.4375 10.5377 8.38811 10.4498 8.30021C10.3619 8.2123 10.3125 8.09307 10.3125 7.96875V7.03125Z"/>
                                                     <path d="M3.28125 0C3.40557 0 3.5248 0.049386 3.61271 0.137294C3.70061 0.225201 3.75 0.34443 3.75 0.46875V0.9375H11.25V0.46875C11.25 0.34443 11.2994 0.225201 11.3873 0.137294C11.4752 0.049386 11.5944 0 11.7188 0C11.8431 0 11.9623 0.049386 12.0502 0.137294C12.1381 0.225201 12.1875 0.34443 12.1875 0.46875V0.9375H13.125C13.6223 0.9375 14.0992 1.13504 14.4508 1.48667C14.8025 1.83831 15 2.31522 15 2.8125V13.125C15 13.6223 14.8025 14.0992 14.4508 14.4508C14.0992 14.8025 13.6223 15 13.125 15H1.875C1.37772 15 0.900806 14.8025 0.549175 14.4508C0.197544 14.0992 0 13.6223 0 13.125V2.8125C0 2.31522 0.197544 1.83831 0.549175 1.48667C0.900806 1.13504 1.37772 0.9375 1.875 0.9375H2.8125V0.46875C2.8125 0.34443 2.86189 0.225201 2.94979 0.137294C3.0377 0.049386 3.15693 0 3.28125 0V0ZM1.875 1.875C1.62636 1.875 1.3879 1.97377 1.21209 2.14959C1.03627 2.3254 0.9375 2.56386 0.9375 2.8125V13.125C0.9375 13.3736 1.03627 13.6121 1.21209 13.7879C1.3879 13.9637 1.62636 14.0625 1.875 14.0625H13.125C13.3736 14.0625 13.6121 13.9637 13.7879 13.7879C13.9637 13.6121 14.0625 13.3736 14.0625 13.125V2.8125C14.0625 2.56386 13.9637 2.3254 13.7879 2.14959C13.6121 1.97377 13.3736 1.875 13.125 1.875H1.875Z"/>
@@ -1093,15 +627,15 @@
                                         <div class="checkbox-container">
                                             <label id="priceDays" class="check-container">Price
                                                 <span class="checkmark"></span>
-                                                <span id="priceDaysTotal" class="price">Value </span>
+                                                <span id="priceDaysTotal" class="price">$0</span>
                                             </label>
                                             <label class="check-container">Cleaning fee
                                                 <span class="checkmark"></span>
-                                                <span class="price">$150 </span>
+                                                <span class="price" id="cleaningFee">$0</span>
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="total-price"><span>Total before taxes:</span> $0</div>
+                                    <div class="total-price"><span>Total before taxes:</span> <span id="totalBeforeTax">$0</span></div>
                                     <button id="reserveBtn" type="submit" class="primary-btn1 two">Reserve</button>
                                 </form>
                             </div>
@@ -1200,6 +734,50 @@ $(document).ready(function() {
         if (!valid) {
             e.preventDefault();
         }
+    });
+
+    $('#dateRangePicker').on('change', function(){
+        let daterange = $(this).val();
+        let days = getDays(daterange);
+        let property = $(this).data('property');
+        let price = parseInt(property.price) * parseInt(days);
+        let cleaningPrice = parseInt(property.cleaning_price) * parseInt(days);
+        let totalPrice = price + cleaningPrice;
+
+        $('#priceDaysTotal').text('$' + price);
+        $('#cleaningFee').text('$' + cleaningPrice);
+        $('#totalBeforeTax').text('$' + totalPrice);
+    });
+
+    function getDays(daterange){
+        let [start, end] = daterange.split(" - ");
+
+        // Convert to Date objects
+        let startDate = new Date(start);
+        let endDate = new Date(end);
+
+        // Difference in milliseconds
+        let diffTime = Math.abs(endDate - startDate);
+
+        // Convert to days (1000 ms * 60 sec * 60 min * 24 hr)
+        let days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+        return days;
+    }
+
+    $('#reviewSubmitBtn').on('click', function(){
+        let cleanliness_star     = $('#cleanliness_star').data('rating');
+        let location_star        = $('#location_star').data('rating');
+        let service_star         = $('#service_star').data('rating');
+        let facilities_star      = $('#facilities_star').data('rating');
+        let value_for_money_star = $('#value_for_money_star').data('rating');
+
+        $('#cleanliness_review').val(cleanliness_star);
+        $('#location_review').val(location_star);
+        $('#service_review').val(service_star);
+        $('#facilities_review').val(facilities_star);
+        $('#value_for_money_review').val(value_for_money_star);
+        
+        $('#reviewForm').submit();
     });
 });
 </script>
