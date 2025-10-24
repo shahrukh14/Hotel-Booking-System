@@ -1,22 +1,28 @@
 @extends('admin.layouts.layout')
-@section('title', 'Login')
+@section('title', 'Reset Password')
 @section('content')
 <div class="banner3-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="banner3-content">
-                    <h2>Admin Login</h2>
-                    <p>Enter your crecentials to login to your portal</p>
-                    <form action="{{ route('admin.login.submit') }}" method="POST" autocomplete="off">
+                    <h2>Reset Password</h2>
+                    <p>Enter your password and confirm password</p>
+                    <form action="{{ route('admin.update.password') }}" method="POST" autocomplete="off">
+                         @error('password')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                        @error('password_confirmation')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
                     @csrf
-                        <div class="from-inner">
-                            <input type="email" name="email" placeholder="Enter Your email" autocomplete="off">
-                        </div>
                         <div class="from-inner">
                             <input type="password" name="password" placeholder="Enter Your password" autocomplete="off">
                         </div>
-                        <button type="submit" class="primary-btn1">Sign In</button>
+                        <div class="from-inner">
+                            <input type="password" name="password_confirmation" placeholder="Re-enter Your password" autocomplete="off">
+                        </div>
+                        <button type="submit" class="primary-btn1">Reset</button>
                     </form>
                     <a href="{{ route('admin.forget.password') }}" class="forgetPassword">Forget Password ?</a>
 

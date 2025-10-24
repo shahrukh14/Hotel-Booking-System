@@ -53,13 +53,13 @@
 <script>
     // Firebase web config
     const firebaseConfig = {
-        apiKey: " ",
-        authDomain: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: "",
-        appId: "",
-        measurementId: ""
+        apiKey: "AIzaSyBRV-zkZj_af0xQG2nnlbDfso4uaw7a4G8",
+        authDomain: "zulu-s-retreat.firebaseapp.com",
+        projectId: "zulu-s-retreat",
+        storageBucket: "zulu-s-retreat.firebasestorage.app",
+        messagingSenderId: "737897520989",
+        appId: "1:737897520989:web:8a58d4b57f5314f53fd2b4",
+        measurementId: "G-JM6JHCFYWW"
     };
 
     // Initialize Firebase

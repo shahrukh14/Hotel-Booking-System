@@ -45,5 +45,9 @@ return [
         'credentials' => base_path(env('FIREBASE_CREDENTIALS')),
     ],
 
+    'stripe' => [
+        'key'            => env('STRIPE_KEY'),
+        'secret'         => env('STRIPE_SECRET'),
+    ],
 
 ];

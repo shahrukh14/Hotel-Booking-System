@@ -47,6 +47,7 @@
 <script src="{{asset('assets/js/jquery.fancybox.min.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{asset('assets/js/custom.js')}}"></script>
+@stack('script')
 </body>
 
 </html>

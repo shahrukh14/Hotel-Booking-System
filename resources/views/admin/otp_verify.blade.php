@@ -1,24 +1,21 @@
 @extends('admin.layouts.layout')
-@section('title', 'Login')
+@section('title', 'OTP verify')
 @section('content')
 <div class="banner3-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="banner3-content">
-                    <h2>Admin Login</h2>
-                    <p>Enter your crecentials to login to your portal</p>
-                    <form action="{{ route('admin.login.submit') }}" method="POST" autocomplete="off">
+                    <h2>OTP Verify</h2>
+                    <p>Enter the 4 digit OTP sent to your registerd email address</p>
+                    <form action="{{ route('admin.otp.check') }}" method="POST" autocomplete="off">
                     @csrf
                         <div class="from-inner">
-                            <input type="email" name="email" placeholder="Enter Your email" autocomplete="off">
+                            <input type="number" name="otp" placeholder="Enter OTP" autocomplete="off">
                         </div>
-                        <div class="from-inner">
-                            <input type="password" name="password" placeholder="Enter Your password" autocomplete="off">
-                        </div>
-                        <button type="submit" class="primary-btn1">Sign In</button>
+                        <button type="submit" class="primary-btn1">Verify</button>
                     </form>
-                    <a href="{{ route('admin.forget.password') }}" class="forgetPassword">Forget Password ?</a>
+                    <a href="{{ route('admin.login') }}" class="forgetPassword">Login ?</a>
 
                     <img loading="lazy" src="{{ asset('assets/img/home1/banner3-vector1.png')}}" alt="" class="vector1">
                     <img loading="lazy" src="{{ asset('assets/img/home1/banner3-vector2.png')}}" alt="" class="vector2">
