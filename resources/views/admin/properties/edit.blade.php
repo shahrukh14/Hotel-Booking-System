@@ -63,14 +63,17 @@
                                 </div>
                                 <div class="col-md-6 form-inner mb-20">
                                     <label>Highlights <span>*</span></label>
-                                    <select id="highlights" name="highlights[]" class="form-control" multiple>
-                                        @php
-                                            $highlightOptions = ['tv','parking','heater','safe','wifi','phone','towels','dryer','laundry','ac'];
-                                        @endphp
-                                        @foreach($highlightOptions as $highlight)
-                                            <option value="{{ $highlight }}" {{ in_array($highlight, $property->highlights ?? []) ? 'selected' : '' }}>{{ ucfirst($highlight) }}</option>
-                                        @endforeach
-                                    </select>
+                                    @php
+                                        $highlightOptions = ['tv','heater','safe','wifi','phone','towels','dryer','laundry','ac'];
+                                    @endphp
+                                    <div class="facility">
+                                    @foreach($highlightOptions as $highlight)
+                                        <div class="fac">
+                                            <input type="checkbox" name="highlights[]" value="{{ $highlight }}" {{ in_array($highlight, $property->highlights ?? []) ? 'checked' : '' }}>
+                                            {{ ucfirst($highlight) }}
+                                        </div>
+                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
 

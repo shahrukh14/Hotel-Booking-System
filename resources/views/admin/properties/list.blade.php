@@ -42,7 +42,6 @@
                                         @php
                                             $highlightLabels = [
                                                 'tv'      => 'TV',
-                                                'parking' => 'Parking',
                                                 'heater'  => 'Heater',
                                                 'safe'    => 'Saving Safe',
                                                 'wifi'    => 'Free Wifi',
