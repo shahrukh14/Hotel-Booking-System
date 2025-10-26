@@ -15,10 +15,13 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Transaction Id</th>
                                 <th>User</th>
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th>Timeline</th>
+                                <th>Booking</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,6 +43,7 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td></td>
                                     <td data-label="User">{{$booking->user->name}}</td>
                                     <td data-label="Price">${{$booking->total}}</td>
                                     <td data-label="Status">
@@ -52,6 +56,21 @@
                                         @endif
                                     </td>
                                     <td data-label="Timeline">{{$booking->date_range}}</td>
+                                    <td data-label="Booking">
+                                        @if ($booking->booking_status == 0)
+                                            <span class="pending">Pending</span>
+                                        @elseif($booking->booking_status == 1)
+                                            <span class="confirmed">Confirmed</span>
+                                        @else
+                                            <span class="rejected">Cancel</span>
+                                        @endif
+                                    </td>
+                                    <td><a href="{{ route('user.booking.view', $booking->id) }}" 
+                                        class="btn btn-sm btn-outline-success" 
+                                        title="View Booking">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

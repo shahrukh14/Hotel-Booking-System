@@ -360,12 +360,12 @@
                         <div class="divider">
                             <!--<span>or</span>-->
                         </div>
-                        <a href="#" class="google-login-btn">
+                        {{-- <a href="#" class="google-login-btn">
                             <div class="icon">
                                 <img src="{{asset('assets/img/home1/icon/google-icon.svg')}}" alt="">
                             </div>
                             Continue with Apple
-                        </a>
+                        </a> --}}
                         <div class="divider">
                             <!--<span>or</span>-->
                         </div>

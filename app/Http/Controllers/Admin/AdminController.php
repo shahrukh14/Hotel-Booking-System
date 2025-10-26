@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Booking;
 use App\Models\Inquiry;
 use App\Models\Property;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -142,21 +143,47 @@ class AdminController extends Controller
         $bookings = Booking::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.pages.bookings', compact('bookings'));
     }
+    //booking status toggle
+    public function toggleBookingStatus(Request $request)
+    {
+        $request->validate([
+            'booking_id' => 'required|exists:bookings,id',
+            'column'     => 'required|in:status,booking_status',
+        ]);
+
+        $booking = Booking::findOrFail($request->booking_id);
+
+        // Toggle the value
+        $booking->{$request->column} = $booking->{$request->column} == 1 ? 0 : 1;
+        $booking->save();
+
+        return response()->json([
+            'status' => 1,
+            'new_value' => $booking->{$request->column}
+        ]);
+    }
+
+    // view bookings in admin panel
+    public function adminBookingView($id){
+        $booking = Booking::findOrFail($id);
+        return view('admin.pages.view', compact('booking'));
+    }
 
     //REVIEWS LIST
     public function reviewList()
     {
         // Fetch all reviews with related property & user
-        $reviews = \App\Models\Review::with(['property', 'user'])
+        $reviews = Review::with(['property', 'user'])
             ->latest()
             ->paginate(10);
 
         return view('admin.review.list', compact('reviews'));
     }
-    //review ststus toggle
+
+    //review ststus button toggle
     public function toggleStatusAjax(Request $request)
     {
-        $review = \App\Models\Review::find($request->id);
+        $review = Review::find($request->id);
         if (!$review) {
             return response()->json(['error' => 'Review not found'], 404);
         }

@@ -16,4 +16,9 @@ class Booking extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+    
+    protected $casts = [
+        'billing_info' => 'array',
+    ];
+
 }

@@ -407,22 +407,28 @@
             </div>
         </div>
         <ul class="menu-list">
-            <li class="menu-item-has-children">
-                <a href="index.html" class="drop-down">Home</a><i class="bi bi-plus dropdown-icon"></i>
-                <ul class="sub-menu">
+            <li class="">
+                <a href="{{route('index')}}" class="drop-down">Home</a>
+                {{-- <ul class="sub-menu">
                     <li><a href="index.html">Home 01</a></li>
                     <li><a href="index2.html">Home 02</a></li>
                     <li><a href="index3.html">Home 03</a></li>
                     <li><a href="index4.html">Home 04</a></li>
                     <li><a href="index5.html">Home 05</a></li>
                     <li><a href="index6.html">Home 06</a></li>
-                </ul>
+                </ul> --}}
             </li>
             <li>
-                <a href="about.html" class="drop-down">About</a>
+                <a href="{{route('book.your.stay')}}" class="drop-down">Book Your Stay</a>
             </li>
-            <li class="menu-item-has-children">
-                <a href="package-grid.html" class="drop-down">Tours</a><i class="bi bi-plus dropdown-icon"></i>
+            <li>
+                <a href="{{route('faqs')}}" class="drop-down">Faqs</a>
+            </li>
+            <li>
+                <a href="{{route('gallery')}}" class="drop-down">Gallery</a>
+            </li>
+            {{-- <li class="menu-item-has-children">
+                <a href="package-grid.html" class="drop-down">Tours</a>
                 <ul class="sub-menu">
                     <li><a href="package-grid.html">Package Grid</a></li>
                     <li>
@@ -438,8 +444,8 @@
                         <a href="package-details.html">Package Details</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menu-item-has-children">
+            </li> --}}
+            {{-- <li class="menu-item-has-children">
                 <a href="destination1.html" class="drop-down">Destination</a><i class="bi bi-plus dropdown-icon"></i>
                 <ul class="sub-menu">
                     <li><a href="destination1.html">Destination Style 01</a></li>
@@ -449,8 +455,8 @@
                     <li><a href="destination5.html">Destination Style 05</a></li>
                     <li><a href="destination-details.html">Destination Details</a></li>
                 </ul>
-            </li>
-            <li class="menu-item-has-children active">
+            </li> --}}
+            {{-- <li class="menu-item-has-children active">
                 <a href="#" class="drop-down">Pages</a><i class="bi bi-plus dropdown-icon"></i>
                 <ul class="sub-menu">
                     <li>
@@ -537,9 +543,9 @@
                     <li><a href="faq.html">Faqs</a></li>
                     <li><a href="error.html">Error</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li>
-                <a href="contact.html" class="drop-down">Contact</a>
+                <a href="{{route('contact')}}" class="drop-down">Contact</a>
             </li>
 
         </ul>

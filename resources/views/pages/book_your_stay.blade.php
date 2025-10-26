@@ -510,11 +510,32 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="primary-btn1" data-bs-toggle="modal" href="#exampleModalToggle" role="button">GIVE A RATING</a>
+                        {{-- <a class="primary-btn1" data-bs-toggle="modal" href="#exampleModalToggle" role="button">GIVE A RATING</a> --}}
+                        @auth
+                            @php
+                                // Check if user has reviewed this property
+                                $hasReviewed = \App\Models\Review::where('user_id', Auth::id())
+                                                ->where('property_id', $property->id)
+                                                ->exists();
+                                // Check if user has booked this property
+                                $hasBooked = App\Models\Booking::where('user_id', Auth::id())
+                                                ->where('property_id', $property->id)
+                                                ->exists();
+                            @endphp
+
+                            @if(!$hasReviewed && $hasBooked)
+                                <a class="primary-btn1" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
+                                    GIVE A RATING
+                                </a>
+                            @endif
+                        @else
+                            {{-- Not logged in, hide button --}}
+                        @endauth
+
                     </div>
                     <div class="review-area">
                         <ul class="comment">
-                            @foreach ($reviews as $review)
+                            @foreach ($reviews->where('status', 1) as $review)
                             <li>
                                 <div class="single-comment-area">
                                     <div class="author-img">

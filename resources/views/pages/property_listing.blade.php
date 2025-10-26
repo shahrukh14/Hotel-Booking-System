@@ -3,7 +3,7 @@
     <div class="row g-0">
         <div class="col-md-4">
             <div class="swiper hotel-img-slider">
-                <span class="batch">Breakfast included</span>
+                {{-- <span class="batch">Breakfast included</span> --}}
                 @foreach ($property->images as $image)
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">

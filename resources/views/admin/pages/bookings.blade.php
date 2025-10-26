@@ -15,10 +15,13 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Transaction Id</th>
                                 <th>User</th>
                                 <th>Price</th>
                                 <th>Status</th>
                                 <th>Timeline</th>
+                                <th>Booking</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,18 +40,30 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td></td>
                                     <td data-label="User">{{$booking->user->name}}</td>
                                     <td data-label="Price">${{$booking->total}}</td>
                                     <td data-label="Status">
-                                        @if ($booking->status == 0)
-                                            <span class="pending">Pending</span>
-                                        @elseif($booking->status == 1)
-                                            <span class="confirmed">Confirmed</span>
-                                        @else
-                                            <span class="rejected">Cancel</span>
-                                        @endif
+                                        <button class="btn btn-sm toggle-status-btn {{ $booking->status == 1 ? 'btn-danger' : 'btn-success' }}" 
+                                                data-id="{{ $booking->id }}" 
+                                                data-column="status">
+                                            {{ $booking->status == 1 ? 'Pending' : 'Confirm' }}
+                                        </button>
                                     </td>
                                     <td data-label="Timeline">{{$booking->date_range}}</td>
+                                    <td data-label="Booking">
+                                        <button class="btn btn-sm toggle-status-btn {{ $booking->booking_status == 1 ? 'btn-danger' : 'btn-success' }}" 
+                                                data-id="{{ $booking->id }}" 
+                                                data-column="booking_status">
+                                            {{ $booking->booking_status == 1 ? 'Pending' : 'Confirm' }}
+                                        </button>
+                                    </td>
+                                    <td><a href="{{ route('admin.view.booking', $booking->id) }}" 
+                                        class="btn btn-sm btn-outline-success" 
+                                        title="View Booking">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -100,3 +115,39 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function() {
+        $('.toggle-status-btn').click(function() {
+            var button = $(this);
+            var bookingId = button.data('id');
+            var column = button.data('column');
+
+            $.ajax({
+                url: "{{ route('admin.booking.toggleStatus') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    booking_id: bookingId,
+                    column: column
+                },
+                success: function(response) {
+                    if(response.status == 1){
+                        // Toggle button text and class
+                        if(column == 'status') {
+                            button.text(response.new_value == 1 ? 'Pending' : 'Confirm');
+                            button.toggleClass('btn-success btn-danger');
+                        } else if(column == 'booking_status') {
+                            button.text(response.new_value == 1 ? 'Pending' : 'Confirm');
+                            button.toggleClass('btn-success btn-danger');
+                        }
+                    } else {
+                        alert('Something went wrong!');
+                    }
+                }
+            });
+        });
+    });
+</script>
+@endpush

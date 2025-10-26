@@ -46,6 +46,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/inquiries', [AdminController::class, 'showInquiries'])->name('pages.inquiries');
         // Bookings list
         Route::get('/bookings', [AdminController::class, 'showBookings'])->name('pages.bookings');
+        Route::get('/bookings/{id}', [AdminController::class, 'adminBookingView'])->name('view.booking');
+        Route::post('bookings/toggle-status', [AdminController::class, 'toggleBookingStatus'])->name('booking.toggleStatus');
         Route::get('/logout', [AdminLoginController::class, 'logout'])->name('logout');
         
         // properties list
@@ -84,6 +86,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
         Route::get('/booking/list', [BookingController::class, 'bookingList'])->name('booking.list');
+        Route::get('/booking/view/{id}', [BookingController::class, 'bookingView'])->name('booking.view');
         Route::post('/booking', [BookingController::class, 'booking'])->name('booking');
         Route::get('/checkout/{booking}', [BookingController::class, 'checkout'])->name('checkout');
         Route::post('/booking/confirm', [BookingController::class, 'bookingConfirm'])->name('booking.confirm');

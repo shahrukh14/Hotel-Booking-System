@@ -16,6 +16,10 @@ class BookingController extends Controller
         $bookings = Booking::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->paginate(15);
         return view('users.booking.list', compact('bookings'));
     }
+    public function bookingView($id){
+        $booking = Booking::where('user_id', auth()->id())->findOrFail($id);
+        return view('users.booking.view', compact('booking'));
+    }
     public function booking(Request $request){
         try {
             $property = Property::findOrFail(1);
@@ -53,6 +57,7 @@ class BookingController extends Controller
             $booking->tax               = $tax;
             $booking->discount          = $discount;
             $booking->total             = $total;
+            $booking->booking_status    = 0;
             $booking->save();
 
             return redirect()->route('user.checkout', $booking->id);
@@ -69,7 +74,7 @@ class BookingController extends Controller
         try {
             //save booking details
             $booking = Booking::findOrFail($request->booking_id);
-            $booking->billing_info = json_encode($request->billing_info);
+            $booking->billing_info = $request->billing_info;
             $booking->save();
             return redirect()->route('user.checkout.session', $booking->id);
         } catch (\Exception $ex) {
