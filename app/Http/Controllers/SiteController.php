@@ -29,14 +29,7 @@ class SiteController extends Controller
             $facilityCounts[$token] = Property::whereJsonContains('facilities', $token)->count();
         }
 
-        // Compute counts for star ratings (stored in a 'ratings' column)
-        $ratingValues = [5, 4.5, 4, 3.5, 3, 2.5, 2, 1];
-        $ratingCounts = [];
-        foreach ($ratingValues as $r) {
-            $ratingCounts[(string)$r] = Property::where('ratings', $r)->count();
-        }
-
-        return view('pages.properties', compact('properties', 'highlightCounts', 'facilityCounts', 'ratingCounts'));
+        return view('pages.properties', compact('properties', 'highlightCounts', 'facilityCounts'));
     }
 
     public function filter(Request $request){

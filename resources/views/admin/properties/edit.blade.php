@@ -100,6 +100,13 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-md-6 form-inner mb-20">
+                                    <label>Bed Size</label>
+                                    <input type="text" id="bed_size" name="bed_size" value="{{ old('bed_size', $property->bed_size) }}">
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-12 form-inner mb-20">
                                     <label>Description</label>
                                     <textarea name="description" id="description" rows="6">{{ old('description', $property->description) }}</textarea>

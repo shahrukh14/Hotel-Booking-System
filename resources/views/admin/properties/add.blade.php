@@ -101,7 +101,14 @@
                                 </div>
                                 <div class="col-md-6 form-inner mb-20">
                                     <label>Location</label>
-                                    <input type="text" id="location" name="location" placeholder="Enter Location">
+                                    <textarea type="text" id="location" name="location" placeholder="Enter Location"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-inner mb-20">
+                                    <label>Bed Size</label>
+                                    <input type="text" id="bed_size" name="bed_size" placeholder="Enter Bed Size">
                                 </div>
                             </div>
 

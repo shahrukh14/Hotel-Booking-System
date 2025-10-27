@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
     public function store(Request $request)
     {
-        //  return $request;
+        // return $request;
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
@@ -46,7 +46,7 @@ class AdminController extends Controller
             'price' => 'required|numeric',
             'cleaning_price' => 'required|numeric',
             'images.*' => 'nullable|image',
-            'location' => 'nullable|string|max:255',
+            'location' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
@@ -61,6 +61,7 @@ class AdminController extends Controller
         $property->price = $request->price;
         $property->cleaning_price = $request->cleaning_price;
         $property->location = $request->location;
+        $property->bed_size = $request->bed_size;
         $property->description = $request->description;
         // file uploads
         $images = [];
@@ -86,6 +87,7 @@ class AdminController extends Controller
     // Update property
     public function update(Request $request, $id)
     {
+        // return $request;
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
@@ -96,7 +98,7 @@ class AdminController extends Controller
             'price' => 'required|numeric',
             'cleaning_price' => 'required|numeric',
             'images.*' => 'nullable|image',
-            'location' => 'nullable|string|max:255',
+            'location' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
@@ -111,6 +113,7 @@ class AdminController extends Controller
         $property->price = $request->price;
         $property->cleaning_price = $request->cleaning_price;
         $property->location = $request->location;
+        $property->bed_size = $request->bed_size;
         $property->description = $request->description;
 
         // Upload images
