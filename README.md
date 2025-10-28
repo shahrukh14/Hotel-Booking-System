@@ -19,3 +19,31 @@ Hotel Booking System Using PHP Laravel V.12 with integrated Google Firebase Auth
 **Payment Gateway:** Stripe Checkout 
 
 ---
+
+## ⚙️ Installation
+
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/shahrukh14/Hotel-Booking-System.git
+cd Hotel-Booking-System
+```
+2️⃣ Install Dependencies
+```bash
+composer install
+```
+
+3️⃣ Configure Environment
+- add your database name, username and password in your .env file.
+
+
+4️⃣ Run Migrations and Seeders
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+5️⃣ Run the project
+```bash
+php artisan serve
+```
