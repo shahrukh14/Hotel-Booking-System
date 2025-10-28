@@ -209,13 +209,14 @@
                                         <input type="checkbox" class="ratingCheckbox" value="5">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                               <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>          
-                                                <i class="bi bi-star-fill"></i>          
-                                                <a href="#" class="review-no">(5)</a>
-                                            </span>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>          
+                                            <i class="bi bi-star-fill"></i>          
+                                            <span href="#" class="review-no">(5)</span>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['5'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -223,13 +224,15 @@
                                         <input type="checkbox" class="ratingCheckbox" value="4.5">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                               <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>          
-                                                <a href="#" class="review-no">(4.5)</a>
-                                            </span>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>          
+                                            <a href="#" class="review-no">(4.5)</a>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['4.5'] ?? 0 }}</span>
+                                        </span>
                                     </label>
                                 </li>
                                 <li>
@@ -242,7 +245,8 @@
                                                 <i class="bi bi-star-fill"></i>
                                                 <i class="bi bi-star-fill"></i>          
                                                 <a href="#" class="review-no">(4.0)</a>
-                                            </span>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['4'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -255,7 +259,8 @@
                                                  <i class="bi bi-star-fill"></i>
                                                  <i class="bi bi-star-half"></i>        
                                                  <a href="#" class="review-no">(3.5)</a>
-                                             </span>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['3.5'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -263,11 +268,12 @@
                                         <input type="checkbox" class="ratingCheckbox" value="3">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                               <i class="bi bi-star-fill"></i>
-                                               <a href="#" class="review-no">(3.0)</a>
-                                            </span>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                           <i class="bi bi-star-fill"></i>
+                           <a href="#" class="review-no">(3.0)</a>
+                    </span>
+                    <span class="qty">{{ $ratingCounts['3'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -275,11 +281,12 @@
                                         <input type="checkbox" class="ratingCheckbox" value="2.5">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                                <a href="#" class="review-no">(2.5)</a>
-                                            </span>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-half"></i>
+                                            <a href="#" class="review-no">(2.5)</a>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['2.5'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -287,10 +294,11 @@
                                         <input type="checkbox" class="ratingCheckbox" value="2">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                               <i class="bi bi-star-fill"></i>
-                                                <a href="#" class="review-no">(2.0)</a>
-                                            </span>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <a href="#" class="review-no">(2.0)</a>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['2'] ?? 0 }}</span>
                                     </label>
                                 </li>
                                 <li>
@@ -298,16 +306,17 @@
                                         <input type="checkbox" class="ratingCheckbox" value="1">
                                         <span class="checkmark"></span>
                                         <span class="stars">
-                                                <i class="bi bi-star-fill"></i>
-                                               <a href="#" class="review-no">(1.0)</a>
-                                            </span>
+                                            <i class="bi bi-star-fill"></i>
+                                            <a href="#" class="review-no">(1.0)</a>
+                                        </span>
+                                        <span class="qty">{{ $ratingCounts['1'] ?? 0 }}</span>
                                     </label>
                                 </li>
                             </ul>
 
                         </div>
                     </div>
-                    <div class="single-widget">
+                    {{-- <div class="single-widget">
                         <h5 class="widget-title">Room Accessibility</h5>
                         <div class="checkbox-container">
                             <ul>
@@ -353,40 +362,20 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-xl-8 order-lg-2 order-1">
                 <div id="propertyListing">
-                    {{-- Property List Render here --}}
+                    {{-- Server-side render paginated properties --}}
+                    @include('pages.property_listing', ['properties' => $properties])
                 </div>
-                
+
                 <div class="row mt-70">
                     <div class="col-lg-12">
                         <nav class="inner-pagination-area">
-                            <ul class="pagination-list">
-                                <li>
-                                    <a href="#" class="shop-pagi-btn"><i class="bi bi-chevron-left"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="active">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="bi bi-three-dots"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#">6</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="shop-pagi-btn"><i class="bi bi-chevron-right"></i></a>
-                                </li>
-                            </ul>
+                            {{-- Use Laravel's pagination links, preserve query string --}}
+                            {{ $properties->links('pagination::bootstrap-5') }}
                         </nav>
                     </div>
                 </div>

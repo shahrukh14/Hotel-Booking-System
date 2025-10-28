@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-md-6 form-inner mb-20">
                                     <label>Location</label>
-                                    <textarea type="text" id="location" name="location" placeholder="Enter Location"></textarea>
+                                    <input type="text" id="location" name="location" placeholder="Enter Location">
                                 </div>
                             </div>
 
@@ -110,10 +110,10 @@
                                     <label>Bed Size</label>
                                     <input type="text" id="bed_size" name="bed_size" placeholder="Enter Bed Size">
                                 </div>
-                            </div>
+                            {{-- </div> --}}
 
-                            <div class="row">
-                                <div class="col-md-12 form-inner mb-20">
+                            {{-- <div class="row"> --}}
+                                <div class="col-md-6 form-inner mb-20">
                                     <label>Description</label>
                                     <textarea name="description" id="description" rows="6"></textarea>
                                 </div>

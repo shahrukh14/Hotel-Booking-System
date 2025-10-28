@@ -13,7 +13,8 @@ class SiteController extends Controller
     }
 
     public function bookYourStay(){
-        $properties = Property::get();
+        // paginate properties server-side: 10 per page
+        $properties = Property::paginate(10);
 
         // Define the same tokens used in the checkboxes so we can count matches
         $highlightTokens = ['tv','heater','safe','wifi','phone','towels','ac','dryer','laundry'];
@@ -29,7 +30,14 @@ class SiteController extends Controller
             $facilityCounts[$token] = Property::whereJsonContains('facilities', $token)->count();
         }
 
-        return view('pages.properties', compact('properties', 'highlightCounts', 'facilityCounts'));
+        // Compute counts for star ratings (stored in a 'ratings' column)
+        $ratingValues = [5, 4.5, 4, 3.5, 3, 2.5, 2, 1];
+        $ratingCounts = [];
+        foreach ($ratingValues as $r) {
+            $ratingCounts[(string)$r] = Property::where('ratings', $r)->count();
+        }
+
+        return view('pages.properties', compact('properties', 'highlightCounts', 'facilityCounts', 'ratingCounts'));
     }
 
     public function filter(Request $request){
@@ -77,8 +85,13 @@ class SiteController extends Controller
             }
         }
 
-        $properties = $query->get();
-        return view('pages.property_listing', compact('properties'));
+        if($request->ajax()){ 
+            $properties = $query->get();
+            return view('pages.property_listing', compact('properties'));
+        }
+
+        $properties = $query->paginate(10)->appends($request->except('page'));
+        return view('pages.properties', compact('properties'));
     }
 
     public function checkAailability($id){

@@ -357,7 +357,8 @@
                 <div class="tour-location">
                     <h4>Location Map</h4>
                     <div class="map-area mb-30">
-                        {!! $property->location !!}
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d346.30633263576993!2d-97.23172459146757!3d32.89182977697354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864dd7c818ed2e41%3A0xc599bdbe5529276b!2s7012%20Bursey%20Rd%2C%20Fort%20Worth%2C%20TX%2076182!5e1!3m2!1sen!2sus!4v1733200019879!5m2!1sen!2sus"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
 
@@ -368,22 +369,12 @@
                         <div class="total-review">
                             <h2>{{number_format($property->ratings,1)}}</h2>
                             <div class="review-wrap">
-                                @php
-                                    $avg = $property->ratings ?? 0;
-                                    $full = (int) floor($avg);
-                                    $half = ($avg - $full) >= 0.5 ? 1 : 0;
-                                    $empty = 5 - $full - $half;
-                                @endphp
                                 <ul class="star-list">
-                                    @for($i = 0; $i < $full; $i++)
-                                        <li><i class="bi bi-star-fill"></i></li>
-                                    @endfor
-                                    @if($half)
-                                        <li><i class="bi bi-star-half"></i></li>
-                                    @endif
-                                    @for($i = 0; $i < $empty; $i++)
-                                        <li><i class="bi bi-star"></i></li>
-                                    @endfor
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
+                                    <li><i class="bi bi-star-fill"></i></li>
                                 </ul>
                                 <span>Ratings</span>
                             </div>
@@ -540,102 +531,52 @@
                                         <ul class="review-item-list">
                                             <li>
                                                 <span>Cleanliness</span>
-                                                @php
-                                                    $n = (float) ($review->cleanliness_rating ?? 0);
-                                                    $full = (int) floor($n);
-                                                    $half = ($n - $full) >= 0.5 ? 1 : 0;
-                                                    $empty = 5 - $full - $half;
-                                                @endphp
                                                 <ul class="star-list">
-                                                    @for($i=0;$i<$full;$i++)
-                                                        <li><i class="bi bi-star-fill"></i></li>
-                                                    @endfor
-                                                    @if($half)
-                                                        <li><i class="bi bi-star-half"></i></li>
-                                                    @endif
-                                                    @for($i=0;$i<$empty;$i++)
-                                                        <li><i class="bi bi-star"></i></li>
-                                                    @endfor
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <span>Location</span>
-                                                @php
-                                                    $n = (float) ($review->location_rating ?? 0);
-                                                    $full = (int) floor($n);
-                                                    $half = ($n - $full) >= 0.5 ? 1 : 0;
-                                                    $empty = 5 - $full - $half;
-                                                @endphp
                                                 <ul class="star-list">
-                                                    @for($i=0;$i<$full;$i++)
-                                                        <li><i class="bi bi-star-fill"></i></li>
-                                                    @endfor
-                                                    @if($half)
-                                                        <li><i class="bi bi-star-half"></i></li>
-                                                    @endif
-                                                    @for($i=0;$i<$empty;$i++)
-                                                        <li><i class="bi bi-star"></i></li>
-                                                    @endfor
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <span>Service</span>
-                                                @php
-                                                    $n = (float) ($review->service_rating ?? 0);
-                                                    $full = (int) floor($n);
-                                                    $half = ($n - $full) >= 0.5 ? 1 : 0;
-                                                    $empty = 5 - $full - $half;
-                                                @endphp
                                                 <ul class="star-list">
-                                                    @for($i=0;$i<$full;$i++)
-                                                        <li><i class="bi bi-star-fill"></i></li>
-                                                    @endfor
-                                                    @if($half)
-                                                        <li><i class="bi bi-star-half"></i></li>
-                                                    @endif
-                                                    @for($i=0;$i<$empty;$i++)
-                                                        <li><i class="bi bi-star"></i></li>
-                                                    @endfor
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <span>Facilities</span>
-                                                @php
-                                                    $n = (float) ($review->facilities_rating ?? 0);
-                                                    $full = (int) floor($n);
-                                                    $half = ($n - $full) >= 0.5 ? 1 : 0;
-                                                    $empty = 5 - $full - $half;
-                                                @endphp
                                                 <ul class="star-list">
-                                                    @for($i=0;$i<$full;$i++)
-                                                        <li><i class="bi bi-star-fill"></i></li>
-                                                    @endfor
-                                                    @if($half)
-                                                        <li><i class="bi bi-star-half"></i></li>
-                                                    @endif
-                                                    @for($i=0;$i<$empty;$i++)
-                                                        <li><i class="bi bi-star"></i></li>
-                                                    @endfor
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <span>Value for money</span>
-                                                @php
-                                                    $n = (float) ($review->value_for_money_rating ?? 0);
-                                                    $full = (int) floor($n);
-                                                    $half = ($n - $full) >= 0.5 ? 1 : 0;
-                                                    $empty = 5 - $full - $half;
-                                                @endphp
                                                 <ul class="star-list">
-                                                    @for($i=0;$i<$full;$i++)
-                                                        <li><i class="bi bi-star-fill"></i></li>
-                                                    @endfor
-                                                    @if($half)
-                                                        <li><i class="bi bi-star-half"></i></li>
-                                                    @endif
-                                                    @for($i=0;$i<$empty;$i++)
-                                                        <li><i class="bi bi-star"></i></li>
-                                                    @endfor
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
+                                                    <li><i class="bi bi-star-fill"></i></li>
                                                 </ul>
                                             </li>
                                         </ul>

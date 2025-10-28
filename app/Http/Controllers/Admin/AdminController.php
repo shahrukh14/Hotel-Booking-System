@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
     public function store(Request $request)
     {
-        // return $request;
+        //  return $request;
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
@@ -46,7 +46,7 @@ class AdminController extends Controller
             'price' => 'required|numeric',
             'cleaning_price' => 'required|numeric',
             'images.*' => 'nullable|image',
-            'location' => 'nullable|string',
+            'location' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
 
@@ -87,7 +87,6 @@ class AdminController extends Controller
     // Update property
     public function update(Request $request, $id)
     {
-        // return $request;
         $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
@@ -98,7 +97,7 @@ class AdminController extends Controller
             'price' => 'required|numeric',
             'cleaning_price' => 'required|numeric',
             'images.*' => 'nullable|image',
-            'location' => 'nullable|string',
+            'location' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
 
