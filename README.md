@@ -3,7 +3,7 @@ Hotel Booking System Using PHP Laravel V.12 with integrated Google Firebase Auth
 
 ---
 
-## 🚀 Features
+## Features
 
 ### 👤User Registration and login
 
@@ -13,10 +13,10 @@ Hotel Booking System Using PHP Laravel V.12 with integrated Google Firebase Auth
 
 ## 🧩 Tech Stack
 
-**Backend:** Laravel 12 (PHP 8+)  
-**Frontend:** Javascript & Bootstrap
-**Database:** MySQL  
-**Payment Gateway:** Stripe Checkout 
+**Backend: ** Laravel 12 (PHP 8.3)  
+**Frontend: ** Javascript & Bootstrap
+**Database: ** MySQL  
+**Payment Gateway: ** Stripe Checkout 
 
 ---
 
