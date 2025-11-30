@@ -43,7 +43,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
-5️⃣ Run the project
+5️⃣ Run the project on local server
 ```bash
 php artisan serve
 ```
