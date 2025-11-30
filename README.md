@@ -5,7 +5,7 @@ Hotel Booking System Using PHP Laravel V.12 with integrated Google Firebase Auth
 
 ## Features
 
-### 👤User Registration and login
+### 👤User Registration and Login
 
 - User auto registration and login using google firebase.
 - Hotel select and booking with payment option.
