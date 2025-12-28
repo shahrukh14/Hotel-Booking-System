@@ -1,5 +1,5 @@
 # Hotel-Booking-System
-Hotel Booking System Using PHP Laravel 12 with integrated Google Firebase Authentication
+Hotel Booking System Using Laravel 12 with integrated Google Firebase Authentication
 
 ---
 
